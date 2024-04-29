@@ -8,7 +8,7 @@ SpearFighter:
 Attacks:
 
 1# SpearThrust:
-![](https://github.com/Boss_AI/AI_Gifs/LanceFighterGIF-Thrust.gif)
+![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/LanceFighterGIF-Thrust.gif)
 2# WindBladeProjectile:
 
 3# CloseCombatAttacks:
