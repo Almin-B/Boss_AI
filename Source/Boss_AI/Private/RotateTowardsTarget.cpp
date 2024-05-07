@@ -23,7 +23,7 @@ EBTNodeResult::Type URotateTowardsTarget::ExecuteTask(UBehaviorTreeComponent& Ow
 
 		FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(EnemyLocation, TargetLocation);
 
-		FRotator NewRotation = FMath::RInterpTo(OwnerPawn->GetActorRotation(), FRotator(EnemyRotation.Pitch, LookAtRotation.Yaw, LookAtRotation.Roll), 1, RotationSpeed);
+		FRotator NewRotation = FMath::RInterpTo(OwnerPawn->GetActorRotation(), FRotator(EnemyRotation.Pitch, LookAtRotation.Yaw, LookAtRotation.Roll), GetWorld()->DeltaTimeSeconds, RotationSpeed);
 
 		OwnerPawn->SetActorRotation(NewRotation);
 
