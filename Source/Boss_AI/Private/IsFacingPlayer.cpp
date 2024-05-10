@@ -19,11 +19,10 @@ void UIsFacingPlayer::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMem
 
 	if (Player && OwnerPawn)
 	{
-		FVector EnemyFacing = OwnerPawn->GetActorForwardVector();
-		FVector PlayerFacing = UKismetMathLibrary::GetForwardVector(UKismetMathLibrary::FindLookAtRotation(Player->GetActorLocation(), OwnerPawn->GetActorLocation()));
+		FVector EnemyFacing = OwnerPawn->GetActorForwardVector(); 
+		FVector PlayerFacing = UKismetMathLibrary::GetForwardVector(UKismetMathLibrary::FindLookAtRotation(OwnerPawn->GetActorLocation(), Player->GetActorLocation()));
 		float FacingAlpha = UKismetMathLibrary::Dot_VectorVector(EnemyFacing, PlayerFacing);
-
-		if (FacingAlpha > -UKismetMathLibrary::DegreesToRadians(ViewAngle))
+		if (UKismetMathLibrary::DegAcos(FacingAlpha) > ViewAngle)
 		{
 			OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsFacing.SelectedKeyName, false);
 		}

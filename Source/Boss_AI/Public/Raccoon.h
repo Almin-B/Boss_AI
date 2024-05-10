@@ -17,8 +17,6 @@ class BOSS_AI_API ARaccoon : public AEnemy_Base
 {
 	GENERATED_BODY()
 
-	ARaccoon();
-
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Raccoon|RaccoonAttacks|ArenaDash")
@@ -45,13 +43,20 @@ public:
 	float MaxDashAnimSpeed = 2;
 	UPROPERTY(BlueprintReadWrite, Category = "Raccoon|RaccoonAttacks|ArenaDash|Animation")
 	float DashAnimAlpha = 1;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Raccoon|RaccoonAttacks|ArenaDash|Animation")
+	UAnimMontage* TransitMontage;
 
 	UFUNCTION(BlueprintCallable, Category = "Raccoon")
 	void AktivateFlyState();
 	UPROPERTY(BlueprintReadWrite, Category = "Raccoon")
 	bool bIsFlyState = false;
 
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Raccoon")
+	void TransitToFlyState();
+
+
 protected:
+
 	FTimeline DashTimeline;
 	UPROPERTY()
 	FVector DashStart;

@@ -64,6 +64,8 @@ public:
 	float ThrustDistance = 800;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
 	float DodgeSpeed = 300;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	float RotationRate = 360;
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|AI")
 	bool bIsDead;
 

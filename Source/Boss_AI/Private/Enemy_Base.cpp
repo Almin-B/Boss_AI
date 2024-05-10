@@ -23,11 +23,11 @@ void AEnemy_Base::UpdateMovementState()
 	{
 	case EMovemntState::Walk:
 		GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
-		GetCharacterMovement()->RotationRate = FRotator(0,360,0);
+		GetCharacterMovement()->RotationRate = FRotator(0,RotationRate,0);
 		break;
 	case EMovemntState::Run:
 		GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
-		GetCharacterMovement()->RotationRate = FRotator(0, 360, 0);
+		GetCharacterMovement()->RotationRate = FRotator(0, RotationRate, 0);
 		break;
 	case EMovemntState::Strave:
 		GetCharacterMovement()->MaxWalkSpeed = StraveSpeed;

@@ -5,6 +5,8 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 void ARaccoon::ArenaDash()
@@ -42,6 +44,11 @@ void ARaccoon::AktivateFlyState()
 	InitFlyingPhase();
 }
 
+void ARaccoon::TransitToFlyState_Implementation()
+{
+
+}
+
 void ARaccoon::InitArenaDashTimeline()
 {
 	if (DashAlpha && DashAlphaZ)
@@ -61,8 +68,9 @@ void ARaccoon::InitFlyingPhase()
 	bIsFlyState = true;
 
 	this->GetController()->FindComponentByClass<UBlackboardComponent>()->SetValueAsBool(FName("IsFlystate"), bIsFlyState);
-
-	
+	//Disable Gravity
+	GetCharacterMovement()->GravityScale = 0;
+	GetCapsuleComponent()->SetEnableGravity(false);
 }
 
 
@@ -82,6 +90,7 @@ void ARaccoon::ArenaDashProgress(float Value)
 void ARaccoon::BeginPlay()
 {
 	Super::BeginPlay();
+	UpdateMovementState();
 }
 
 void ARaccoon::Tick(float DeltaTime)
