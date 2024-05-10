@@ -45,6 +45,9 @@
 **/SourceArt/**/*.png
 **/SourceArt/**/*.tga
 
+# .vscode
+.vscode/*
+
 # Binary Files
 Binaries/*
 Plugins/*/Binaries/*

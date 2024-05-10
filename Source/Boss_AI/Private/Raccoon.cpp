@@ -4,31 +4,42 @@
 #include "Raccoon.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
+#include "BehaviorTree/BlackboardComponent.h"
+
 
 void ARaccoon::ArenaDash()
 {
-	FHitResult Hit;
-	FVector Start = this->GetActorLocation();
-	FVector End = this->GetActorLocation() + (this->GetActorForwardVector() * 10000);
-	FCollisionQueryParams TraceParams = FCollisionQueryParams(FName(TEXT("Trace")), true, this);
-	TraceParams.bTraceComplex = false;
-	TraceParams.bReturnPhysicalMaterial = false;
-
-	GetWorld()->LineTraceSingleByChannel(Hit,Start,End,ECC_WorldStatic,TraceParams);
-
-	if (Hit.bBlockingHit)
+	if(bIsFlyState)
 	{
-		if (bShowDashDebug)
-		{
-			DrawDebugLine(GetWorld(),Start,Hit.Location,FColor::Yellow,false,2,0,12);
-			DrawDebugSphere(GetWorld(), Hit.Location, 25, 12, FColor::Orange, false, 2, 0, 10);
-		}
+		FHitResult Hit;
+		FVector Start = this->GetActorLocation();
+		FVector End = this->GetActorLocation() + (this->GetActorForwardVector() * 10000);
+		FCollisionQueryParams TraceParams = FCollisionQueryParams(FName(TEXT("Trace")), true, this);
+		TraceParams.bTraceComplex = false;
+		TraceParams.bReturnPhysicalMaterial = false;
 
-		DashStart = Start;
-		DashEnd = Hit.Location - (this->GetActorForwardVector() * ArenaWallOffset);
-		DashTimeline.PlayFromStart();
+		GetWorld()->LineTraceSingleByChannel(Hit,Start,End,ECC_WorldStatic,TraceParams);
+
+		if (Hit.bBlockingHit)
+		{
+			if (bShowDashDebug)
+			{
+				DrawDebugLine(GetWorld(),Start,Hit.Location,FColor::Yellow,false,2,0,12);
+				DrawDebugSphere(GetWorld(), Hit.Location, 25, 12, FColor::Orange, false, 2, 0, 10);
+			}
+
+			DashStart = Start;
+			DashEnd = Hit.Location - (this->GetActorForwardVector() * ArenaWallOffset);
+			DashTimeline.PlayFromStart();
+		}
 	}
 
+}
+
+void ARaccoon::AktivateFlyState()
+{
+	InitArenaDashTimeline();
+	InitFlyingPhase();
 }
 
 void ARaccoon::InitArenaDashTimeline()
@@ -40,13 +51,20 @@ void ARaccoon::InitArenaDashTimeline()
 		DashTimeline.AddInterpFloat(DashAlpha, TimelineProgress);
 		DashTimeline.SetLooping(false);
 		DashTimeline.SetPlayRate(DashSpeed);
+		
 	}
 }
 
 void ARaccoon::InitFlyingPhase()
 {
 	FlyHeight = this->GetActorLocation().Z;
+	bIsFlyState = true;
+
+	this->GetController()->FindComponentByClass<UBlackboardComponent>()->SetValueAsBool(FName("IsFlystate"), bIsFlyState);
+
+	
 }
+
 
 void ARaccoon::ArenaDashProgress(float Value)
 {
@@ -57,13 +75,13 @@ void ARaccoon::ArenaDashProgress(float Value)
 
 	FlyAnimSpeed = FMath::Lerp(1.0f, MaxDashAnimSpeed, FMath::Abs(DashAlphaZ->GetFloatValue(Value)));
 	DashAnimAlpha = FMath::Lerp(1.0f, 0.0f, FMath::Abs(DashAlphaZ->GetFloatValue(Value)));
+
+	
 }
 
 void ARaccoon::BeginPlay()
 {
 	Super::BeginPlay();
-	InitArenaDashTimeline();
-	InitFlyingPhase();
 }
 
 void ARaccoon::Tick(float DeltaTime)

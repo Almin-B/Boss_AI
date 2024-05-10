@@ -1,0 +1,613 @@
+{
+	"folders": [
+		{
+			"name": "Boss_AI",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "C:\\Engines\\UE_5.3"
+		}
+	],
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"npm.autoDetect": "off"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Boss_AI Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AI Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AI Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AI Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Test Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Test",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Test Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Test",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AI Win64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Test Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Test",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Shipping Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Shipping",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Shipping",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AI Win64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AI Win64 Shipping Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AI",
+					"Win64",
+					"Shipping",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Debug Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AIEditor Win64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Debug Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Debug",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 DebugGame Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AIEditor Win64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"DebugGame",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Development Build",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Development Rebuild",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Build.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"Boss_AIEditor Win64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"label": "Boss_AIEditor Win64 Development Clean",
+				"group": "build",
+				"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+				"args": [
+					"Boss_AIEditor",
+					"Win64",
+					"Development",
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "C:\\Engines\\UE_5.3"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch Boss_AI (Debug)",
+				"request": "launch",
+				"program": "C:\\UE5Projects\\Boss_AI\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+				"preLaunchTask": "Boss_AI Win64 Debug Build",
+				"args": [
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AI (DebugGame)",
+				"request": "launch",
+				"program": "C:\\UE5Projects\\Boss_AI\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+				"preLaunchTask": "Boss_AI Win64 DebugGame Build",
+				"args": [
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AI (Development)",
+				"request": "launch",
+				"program": "C:\\UE5Projects\\Boss_AI\\Binaries\\Win64\\UnrealGame.exe",
+				"preLaunchTask": "Boss_AI Win64 Development Build",
+				"args": [
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AI (Test)",
+				"request": "launch",
+				"program": "C:\\UE5Projects\\Boss_AI\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+				"preLaunchTask": "Boss_AI Win64 Test Build",
+				"args": [
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AI (Shipping)",
+				"request": "launch",
+				"program": "C:\\UE5Projects\\Boss_AI\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+				"preLaunchTask": "Boss_AI Win64 Shipping Build",
+				"args": [
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AIEditor (Debug)",
+				"request": "launch",
+				"program": "C:\\Engines\\UE_5.3\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
+				"preLaunchTask": "Boss_AIEditor Win64 Debug Build",
+				"args": [
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject"
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AIEditor (DebugGame)",
+				"request": "launch",
+				"program": "C:\\Engines\\UE_5.3\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
+				"preLaunchTask": "Boss_AIEditor Win64 DebugGame Build",
+				"args": [
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject"
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Launch Boss_AIEditor (Development)",
+				"request": "launch",
+				"program": "C:\\Engines\\UE_5.3\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+				"preLaunchTask": "Boss_AIEditor Win64 Development Build",
+				"args": [
+					"C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject"
+				],
+				"cwd": "C:\\Engines\\UE_5.3",
+				"stopAtEntry": false,
+				"console": "externalTerminal",
+				"type": "cppvsdbg",
+				"visualizerFile": "C:\\Engines\\UE_5.3\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
+				"sourceFileMap": {
+					"D:\\build\\++UE5\\Sync": "C:\\Engines\\UE_5.3"
+				}
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Win64 Development Build",
+				"program": "C:\\Engines\\UE_5.3\\Engine\\Build\\BatchFiles\\RunUBT.bat",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=C:\\UE5Projects\\Boss_AI\\Boss_AI.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"console": "externalTerminal",
+				"stopAtEntry": false,
+				"cwd": "C:\\Engines\\UE_5.3"
+			}
+		]
+	}
+}

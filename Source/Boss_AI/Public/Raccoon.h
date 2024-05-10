@@ -17,6 +17,8 @@ class BOSS_AI_API ARaccoon : public AEnemy_Base
 {
 	GENERATED_BODY()
 
+	ARaccoon();
+
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "Raccoon|RaccoonAttacks|ArenaDash")
@@ -29,6 +31,7 @@ public:
 	UCurveFloat* DashAlphaZ;
 	UPROPERTY(EditDefaultsOnly, Category = "Raccoon|RaccoonAttacks|ArenaDash")
 	float DashSpeed = 1;
+
 	float FlyHeight;
 	UPROPERTY(EditDefaultsOnly, Category = "Raccoon|RaccoonAttacks|ArenaDash")
 	float DashHeightOffset = 10;
@@ -43,6 +46,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Raccoon|RaccoonAttacks|ArenaDash|Animation")
 	float DashAnimAlpha = 1;
 
+	UFUNCTION(BlueprintCallable, Category = "Raccoon")
+	void AktivateFlyState();
+	UPROPERTY(BlueprintReadWrite, Category = "Raccoon")
+	bool bIsFlyState = false;
+
 protected:
 	FTimeline DashTimeline;
 	UPROPERTY()
@@ -53,6 +61,7 @@ protected:
 	void InitArenaDashTimeline();
 	
 	void InitFlyingPhase();
+
 
 protected:
 	// Called when the game starts or when spawned
