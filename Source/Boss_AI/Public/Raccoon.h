@@ -53,8 +53,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Raccoon")
 	void TransitToFlyState();
-
-
+	
 protected:
 
 	FTimeline DashTimeline;
