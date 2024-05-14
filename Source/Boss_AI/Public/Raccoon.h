@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Enemy_Base.h"
 #include "Components/TimelineComponent.h"
-#include "Curves/CurveFloat.h"
 #include "Raccoon.generated.h"
 
 /**
@@ -65,9 +64,7 @@ protected:
 	void InitArenaDashTimeline();
 	
 	void InitFlyingPhase();
-
-
-protected:
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
