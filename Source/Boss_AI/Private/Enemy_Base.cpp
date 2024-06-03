@@ -121,6 +121,12 @@ void AEnemy_Base::TakeHit_Implementation(float Damage)
 
 }
 
+void AEnemy_Base::ActivateEnemy_Implementation()
+{
+
+	
+}
+
 // Called when the game starts or when spawned
 void AEnemy_Base::BeginPlay()
 {

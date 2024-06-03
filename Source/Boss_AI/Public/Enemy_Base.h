@@ -116,6 +116,8 @@ public:
 	float GuardDecreaseDelay;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	float GuardDecreaseInterval;
+	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
+	void ActivateEnemy();
 
 protected:
 	// Called when the game starts or when spawned
