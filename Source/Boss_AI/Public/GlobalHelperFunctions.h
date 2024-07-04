@@ -22,5 +22,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "HitBox")
 	static void SpawnHitBox(float Damage, FVector HitBoxSize,FVector Location,FRotator Rotation, float LifeTime, bool ShowDebug, bool IsFromEnemy, AActor* ParentActor, AActor* Owner);
-	
 };

@@ -8,6 +8,7 @@
 
 UGlobalHelperFunctions::UGlobalHelperFunctions(const FObjectInitializer& ObjectInitializer)
 {
+	
 }
 
 
