@@ -18,9 +18,13 @@ public:
 	void DetectMoveDirection(float AxisValue);
 	UFUNCTION(BlueprintCallable)
 	void Turn();
-	float CurrentMoveDirectionAlpha = 1;
+	float GetCurrentMoveDirectionAlpha();
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	bool bIsTurning = false;
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
+	bool bIsSprinting;
+	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	float MoveRightAxisValue;
+	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
+	float RootVelocity;
 };

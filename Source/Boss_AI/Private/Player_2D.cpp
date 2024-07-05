@@ -9,29 +9,36 @@
 
 void APlayer_2D::DetectMoveDirection(float AxisValue)
 {
-	if(CurrentMoveDirectionAlpha > 0.1f)
+	if(GetCurrentMoveDirectionAlpha() > 0.1f)
 	{
 		if(AxisValue < -0.1)
 		{
 			Turn();
-			CurrentMoveDirectionAlpha = -1;
 		}
 	}
-	else if(CurrentMoveDirectionAlpha < -0.1f)
+	else if(GetCurrentMoveDirectionAlpha() < -0.1f)
 	{
 		if(AxisValue > 0.1)
 		{
 			Turn();
-			CurrentMoveDirectionAlpha = 1;
 		}
 	}
 }
 
 void APlayer_2D::Turn()
 {
+	if(!bIsTurning && !bIsSprinting)
+	{
+		bIsTurning = true;
+		DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
+		MoveRightAxisValue = 0;
+		this->GetCharacterMovement()->StopMovementImmediately();
+	}
+}
+
+float APlayer_2D::GetCurrentMoveDirectionAlpha()
+{
+	float XDirection = this->GetActorForwardVector().X;
 	
-	bIsTurning = true;
-	DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
-	MoveRightAxisValue = 0;
-	this->GetCharacterMovement()->StopMovementImmediately();
+	return XDirection;
 }
