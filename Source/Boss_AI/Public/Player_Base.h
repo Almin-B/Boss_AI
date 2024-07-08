@@ -27,8 +27,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void LightAttack();
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void HeavyAttack();
+	virtual void HeavyAttack_Implementation();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	bool bIsAttacking;

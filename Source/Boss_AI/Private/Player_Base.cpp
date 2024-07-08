@@ -31,6 +31,11 @@ void APlayer_Base::Tick(float DeltaTime)
 
 }
 
+void APlayer_Base::HeavyAttack_Implementation()
+{
+	
+}
+
 bool APlayer_Base::IsAttackMontageValid()
 {
 	if (LightAttackMontage && HeavyAttackMontage)

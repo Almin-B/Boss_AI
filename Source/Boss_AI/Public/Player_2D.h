@@ -27,4 +27,26 @@ public:
 	float MoveRightAxisValue;
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	float RootVelocity;
+
+	//Player Combat
+	
+	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|HeavyAttack")
+	UAnimMontage* HeavyAttack_FollowUp_Montage;
+	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|Special")
+	UAnimMontage* SpecialAttack;
+
+	bool bIsInHeavyAttack;
+	
+	void HeavyAttackFollowup();
+	void HeavyAttack_Implementation() override;
+	void InitHeavyAttackNotify();
+	void OnHeavyAttackEnd();
+
+	protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 };
