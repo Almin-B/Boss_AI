@@ -14,6 +14,10 @@ class BOSS_AI_API APlayer_2D : public APlayer_Base
 {
 	GENERATED_BODY()
 public:
+	// Sets default values for this character's properties
+	APlayer_2D();
+
+	// Player Movement
 	UFUNCTION(BlueprintCallable)
 	void DetectMoveDirection(float AxisValue);
 	UFUNCTION(BlueprintCallable)
@@ -27,20 +31,64 @@ public:
 	float MoveRightAxisValue;
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	float RootVelocity;
+	bool CanTurn();
+
+	void InitMovementNotifys();
+
+	//Roll
+	UPROPERTY(EditDefaultsOnly,Category="Player|Movement|Roll")
+	float RollSpeed = 1;
+	UPROPERTY(EditDefaultsOnly,Category="Player|Movement|Roll")
+	UAnimMontage* RollMontage;
+	
+	bool bIsRolling;
+	UFUNCTION(BlueprintCallable)
+	void Roll();
+
+	bool CanRoll();
+	
+	void OnRollEnd();
 
 	//Player Combat
+
+	//HitBox
+	EPlayerAttackType CurrentPlayerAttack;
+	void OnSpawnHitbox();
+	void InitHitboxNotify();
+
+	UPROPERTY(EditDefaultsOnly)
+	USphereComponent* HitBoxSpawnPoint;
 	
+	//Light Attack
+	bool bIsInLightAttack;
+
+	void LightAttack_Implementation() override;
+	void InitLightAttackNotify();
+	void OnLightAttackEnd();
+	
+	//Heavy Attack
+	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|HeavyAttack")
+	UAnimMontage* HeavyAttack_StrikeUp_Montage;
 	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|HeavyAttack")
 	UAnimMontage* HeavyAttack_FollowUp_Montage;
 	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|Special")
-	UAnimMontage* SpecialAttack;
+	UAnimMontage* SpecialAttack_Montage;
 
 	bool bIsInHeavyAttack;
+	int HeavyAttackComboCount = 0;
 	
 	void HeavyAttackFollowup();
 	void HeavyAttack_Implementation() override;
 	void InitHeavyAttackNotify();
 	void OnHeavyAttackEnd();
+
+	//Special Attack
+
+	UFUNCTION(BlueprintCallable)
+	void SpecialAttack();
+	void OnSpecialAttackEnd();
+	void InitSpecialAttackNotify();
+	bool bIsInSpecialAttack;
 
 	protected:
 	// Called when the game starts or when spawned

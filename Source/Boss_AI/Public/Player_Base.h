@@ -8,6 +8,16 @@
 #include "Enemy_Base.h"
 #include "Player_Base.generated.h"
 
+
+UENUM(BlueprintType)
+enum class EPlayerAttackType : uint8
+{
+	LightAttack UMETA(DisplayName = "LightAttack"),
+	HeavyAttack_StrikeUp UMETA(DisplayName = "HeavyAttack_StrikeUp"),
+	HeavyAttack UMETA(DisplayName = "HeavyAttack"),
+	SpecialAttack UMETA(DisplayName = "SpecialAttack"),
+};
+
 UCLASS()
 class BOSS_AI_API APlayer_Base : public ACharacter
 {
@@ -25,8 +35,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void LightAttack();
+	virtual void LightAttack_Implementation();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void HeavyAttack();
 	virtual void HeavyAttack_Implementation();
@@ -35,16 +46,14 @@ public:
 	bool bIsAttacking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	float AttackSpeed = 2;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite, Category="Player|Combat|LightAttack")
 	UAnimMontage* LightAttackMontage;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat|HeavyAttack")
 	UAnimMontage* HeavyAttackMontage;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	float DashPower = 5000;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
-	float AttackDamage;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
-	FVector HitBoxSize;
+	TMap<EPlayerAttackType, FAttackInformation> MappedAttackInformation;
 	UPROPERTY(BlueprintReadWrite, Category = "Player|Combat|Defense")
 	bool bIsBlocking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat|Defense")
