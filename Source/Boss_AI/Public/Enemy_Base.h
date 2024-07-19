@@ -7,6 +7,7 @@
 #include "PatrolPath.h"
 #include "Animation/AnimMontage.h"
 #include "BehaviorTree/BehaviorTree.h"
+#include "Components/TimelineComponent.h"
 
 
 #include "Enemy_Base.generated.h"
@@ -27,7 +28,9 @@ enum class EMovemntState : uint8
 	Walk    UMETA(DisplayName = "Walk"),
 	Run     UMETA(DisplayName = "Run"),
 	Strave  UMETA(DisplayName = "Strave"),
-	Thrust  UMETA(DisplayName = "Thrust")
+	Thrust  UMETA(DisplayName = "Thrust"),
+	Idle    UMETA(DisplayName = "Idle"),
+	Walk_Back    UMETA(DisplayName = "Walk")
 };
 
 UENUM(BlueprintType)
@@ -52,19 +55,40 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "BaseEnemy|AI")
 	APatrolPath* PatrolPath;
 
+	//Rootmotion Movement
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	bool bIsRootmotionEnabled = false;
+	UPROPERTY(BlueprintReadOnly, Category = "BaseEnemy|Movement|Rootmotion")
+	float CurrentRootmotionAlpha;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|Rootmotion")
+	float RootmotionUpdateSpeed = 1.2f;
+	UFUNCTION(BlueprintCallable)
+	void ChangeRootmotionState(EMovemntState NewMovementState);
+	
+	void UpdateRootmotionAlpha();
+	FTimerHandle RootmotionUpdateTimeline;
+	
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|Rootmotion")
+	TMap<EMovemntState, float> MappedRootmotionData;
+	
+
+	//Base Movement
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|BaseMovement")
 	float WalkSpeed = 80;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|BaseMovement")
 	float RunSpeed = 190;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+
+	//Advanced Movement
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement")
 	float StraveSpeed = 80;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement")
 	float ThrustSpeed = 400;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement")
 	float ThrustDistance = 800;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement")
 	float DodgeSpeed = 300;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement")
 	float RotationRate = 360;
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|AI")
 	bool bIsDead;
@@ -118,6 +142,9 @@ public:
 	float GuardDecreaseInterval;
 	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
 	void ActivateEnemy();
+
+	UFUNCTION(BlueprintCallable,BlueprintPure)
+	bool IsLookingAt(FVector TargetLocation, float SightAngle);
 
 protected:
 	// Called when the game starts or when spawned

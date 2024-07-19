@@ -4,6 +4,7 @@
 #include "Enemy_Base.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -14,6 +15,23 @@ AEnemy_Base::AEnemy_Base()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
+}
+
+void AEnemy_Base::ChangeRootmotionState(EMovemntState NewMovementState)
+{
+	CurrentMovemntState = NewMovementState;
+	GetWorldTimerManager().SetTimer(RootmotionUpdateTimeline,this, &AEnemy_Base::UpdateRootmotionAlpha,GetWorld()->GetDeltaSeconds(),true,0.0f);
+}
+
+void AEnemy_Base::UpdateRootmotionAlpha()
+{
+	float TargetAlpha = *MappedRootmotionData.Find(CurrentMovemntState);
+	CurrentRootmotionAlpha = FMath::FInterpTo(CurrentRootmotionAlpha,TargetAlpha,GetWorld()->GetDeltaSeconds(),RootmotionUpdateSpeed);
+	
+	if(FMath::IsNearlyEqual(CurrentRootmotionAlpha,TargetAlpha,0.01))
+	{
+		GetWorldTimerManager().ClearTimer(RootmotionUpdateTimeline);
+	}
 }
 
 void AEnemy_Base::UpdateMovementState()
@@ -125,6 +143,21 @@ void AEnemy_Base::ActivateEnemy_Implementation()
 {
 
 	
+}
+
+bool AEnemy_Base::IsLookingAt(FVector TargetLocation, float SightAngle)
+{
+	FVector DesiredLookAtDirection = UKismetMathLibrary::GetForwardVector(UKismetMathLibrary::FindLookAtRotation(this->GetActorLocation(),TargetLocation));
+	FVector EnemyLookDirection = this->GetActorForwardVector();
+	
+	float LookAlpha = UKismetMathLibrary::Dot_VectorVector(EnemyLookDirection,DesiredLookAtDirection);
+	float LookAngle = UKismetMathLibrary::DegAcos(LookAlpha);
+	
+	if(LookAngle >= SightAngle)
+	{
+		return false;
+	}
+	return true;
 }
 
 // Called when the game starts or when spawned
