@@ -4,6 +4,7 @@
 #include "IsFacingTarget.h"
 
 #include "AIController.h"
+#include "Enemy_Base.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -17,18 +18,12 @@ void UIsFacingTarget::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMem
 	AAIController* AIOwner = OwnerComp.GetAIOwner();
 	APawn* OwnerPawn = AIOwner->GetPawn();
 
-	if (OwnerPawn)
+	AEnemy_Base* Enemy = Cast<AEnemy_Base>(OwnerPawn);
+
+	if (Enemy)
 	{
-		FVector EnemyFacing = OwnerPawn->GetActorForwardVector(); 
-		FVector TargetFacing = UKismetMathLibrary::GetForwardVector(UKismetMathLibrary::FindLookAtRotation(OwnerPawn->GetActorLocation(), OwnerComp.GetBlackboardComponent()->GetValueAsVector(TargetLocation.SelectedKeyName)));
-		float FacingAlpha = UKismetMathLibrary::Dot_VectorVector(EnemyFacing, TargetFacing);
-		if (UKismetMathLibrary::DegAcos(FacingAlpha) > ViewAngle)
-		{
-			OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsFacing.SelectedKeyName, false);
-		}
-		else
-		{
-			OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsFacing.SelectedKeyName, true);
-		}
+		FVector Location = OwnerComp.GetBlackboardComponent()->GetValueAsVector(TargetLocation.SelectedKeyName);
+		bool bIsFacing = Enemy->IsLookingAt(Location,ViewAngle);
+		OwnerComp.GetBlackboardComponent()->SetValueAsBool(IsFacing.SelectedKeyName, bIsFacing);
 	}
 }

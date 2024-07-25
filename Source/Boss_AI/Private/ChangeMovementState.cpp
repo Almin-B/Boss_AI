@@ -16,8 +16,15 @@ EBTNodeResult::Type UChangeMovementState::ExecuteTask(UBehaviorTreeComponent& Ow
 
 	AEnemy_Base* Enemy = Cast<AEnemy_Base>(OwnerPawn);
 
-	Enemy->CurrentMovemntState = SetMovementState;
-	Enemy->UpdateMovementState();
+	if(Enemy->bIsRootmotionEnabled)
+	{
+		Enemy->ChangeRootmotionState(SetMovementState);
+	}
+	else
+	{
+		Enemy->CurrentMovemntState = SetMovementState;
+		Enemy->UpdateMovementState();
+	}
 
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	return EBTNodeResult::Succeeded;

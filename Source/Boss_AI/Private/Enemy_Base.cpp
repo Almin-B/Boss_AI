@@ -34,6 +34,79 @@ void AEnemy_Base::UpdateRootmotionAlpha()
 	}
 }
 
+void AEnemy_Base::TurnAround()
+{
+	if(!bIsTurning)
+	{
+		bIsTurning = true;
+		TurnRotation = this->GetActorRotation() + FRotator(0,180,0);
+		StartRotationZ = FMath::Abs(this->GetActorRotation().Yaw);
+		EndRotationZ = FMath::Abs(TurnRotation.Yaw);
+		TurnTimeline->PlayFromStart();
+	}
+}
+
+void AEnemy_Base::TurnTimelineCallback(float val)
+{
+	if(TurnMontage)
+	{
+		
+		FRotator CurrentRotation = this->GetActorRotation();
+		float RotZ = FMath::Lerp(StartRotationZ,EndRotationZ,val);
+		FRotator Rotation = FRotator(0,RotZ,0);
+		
+		this->SetActorRotation(Rotation);
+
+		UAnimInstance* AnimInstance = this->GetMesh()->GetAnimInstance();
+		float MontagePlayLeght = TurnMontage->GetPlayLength();
+		float MappedTurnAlpha = UKismetMathLibrary::MapRangeClamped(RotZ,StartRotationZ,EndRotationZ,0.0f,MontagePlayLeght);
+		
+		AnimInstance->Montage_Play(TurnMontage,0.0f);
+		AnimInstance->Montage_SetPosition(TurnMontage,MappedTurnAlpha);
+
+		if(FMath::IsNearlyEqual(MappedTurnAlpha,MontagePlayLeght,0.01f))
+		{
+			TurnEndCallback();
+		}
+	}
+}
+
+
+void AEnemy_Base::TurnEndCallback()
+{
+	bIsTurning = false;
+	this->GetMesh()->GetAnimInstance()->StopAllMontages(0.25f);
+}
+
+void AEnemy_Base::InitTurntimeline()
+{
+	if(TurnCurve)
+	{
+		FOnTimelineFloat OnTurnTimelineCallback;
+		
+		TurnTimeline = NewObject<UTimelineComponent>(this, FName("TurnTimelineAnimation"));
+		TurnTimeline->CreationMethod = EComponentCreationMethod::UserConstructionScript;
+		this->BlueprintCreatedComponents.Add(TurnTimeline);
+		TurnTimeline->SetNetAddressable();
+
+		TurnTimeline->SetPropertySetObject(this);
+		TurnTimeline->SetDirectionPropertyName(FName("TurnTimelineDirection"));
+
+		TurnTimeline->SetLooping(false);
+		TurnTimeline->SetTimelineLength(1.0f);
+		TurnTimeline->SetPlayRate(TurnTimelinePlayrate);
+		TurnTimeline->SetTimelineLengthMode(ETimelineLengthMode::TL_TimelineLength);
+
+		TurnTimeline->SetPlaybackPosition(0.0f,false);
+
+		OnTurnTimelineCallback.BindUFunction(this, FName{ TEXT("TurnTimelineCallback")});
+		TurnTimeline->AddInterpFloat(TurnCurve,OnTurnTimelineCallback);
+
+		TurnTimeline->RegisterComponent();
+		
+	}
+}
+
 void AEnemy_Base::UpdateMovementState()
 {
 
@@ -164,21 +237,16 @@ bool AEnemy_Base::IsLookingAt(FVector TargetLocation, float SightAngle)
 void AEnemy_Base::BeginPlay()
 {
 	Super::BeginPlay();
+	InitTurntimeline();
 }
 
 // Called every frame
 void AEnemy_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	TurnTimeline->TickComponent(DeltaTime, ELevelTick::LEVELTICK_TimeOnly, NULL);
 }
 
-// Called to bind functionality to input
-void AEnemy_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
 
 
 

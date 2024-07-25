@@ -72,6 +72,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|Rootmotion")
 	TMap<EMovemntState, float> MappedRootmotionData;
 	
+	
 
 	//Base Movement
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|BaseMovement")
@@ -92,6 +93,38 @@ public:
 	float RotationRate = 360;
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|AI")
 	bool bIsDead;
+
+	//Turning Around
+
+	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	bool bIsTurning = false;
+
+	UFUNCTION(BlueprintCallable, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	void TurnAround();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	float TurnTimelinePlayrate = 1.0f;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	UAnimMontage* TurnMontage;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	UCurveFloat* TurnCurve;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
+	TEnumAsByte<ETimelineDirection::Type> TurnTimelineDirection;
+
+	UFUNCTION()
+	void TurnTimelineCallback(float val);
+	UFUNCTION()
+	void TurnEndCallback();
+
+	void InitTurntimeline();
+
+	UPROPERTY()
+	UTimelineComponent* TurnTimeline;
+	
+	FRotator TurnRotation;
+	float StartRotationZ;
+	float EndRotationZ;
+
 
 
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Movement")
@@ -153,8 +186,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
 
 };

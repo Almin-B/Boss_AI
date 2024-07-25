@@ -141,7 +141,7 @@ void ALanceFighter::CloseCombatAttack(EAttackType Attack, float AttackSpeed)
 int ALanceFighter::ChooseCombatAttack(TArray<FCombatProbabilities> ProbabilityArray)
 {
 	float ProbabilitySum = 0.0f;
-	int ChoosenAttackIndex;
+	int ChoosenAttackIndex = -1;
 	float RandValue; 
 
 	for (FCombatProbabilities CombatProbability : ProbabilityArray)
