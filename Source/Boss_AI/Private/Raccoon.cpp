@@ -2,6 +2,8 @@
 
 
 #include "Raccoon.h"
+
+#include "MontageEndNotify.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -26,10 +28,40 @@ void ARaccoon::TurnEndCallback()
 	FollowWalkingPath->SetIsUpdateActive(true);
 }
 
+void ARaccoon::StartBossEntrance()
+{
+	if(BossEntranceMontage)
+	{
+		bIsInBossentrance = true;
+		this->GetMesh()->GetAnimInstance()->Montage_Play(BossEntranceMontage);
+	}
+}
+
+void ARaccoon::InitMontagesNotify()
+{
+	if(BossEntranceMontage)
+	{
+		for (FAnimNotifyEvent EventNotify : BossEntranceMontage->Notifies)
+		{
+			if(const auto EntranceEndNotify = Cast<UMontageEndNotify>(EventNotify.Notify))
+			{
+				EntranceEndNotify->OnNotified.AddUObject(this, &ARaccoon::OnBossEndtranceEnd);
+			}
+		}
+	}
+}
+
+void ARaccoon::OnBossEndtranceEnd()
+{
+	bIsInBossentrance = false;
+	bIsInCombat = true;
+}
+
 void ARaccoon::BeginPlay()
 {
 	Super::BeginPlay();
 	UpdateMovementState();
+	InitMontagesNotify();
 }
 
 void ARaccoon::Tick(float DeltaTime)

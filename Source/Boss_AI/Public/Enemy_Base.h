@@ -125,7 +125,8 @@ public:
 	float StartRotationZ;
 	float EndRotationZ;
 
-
+	UPROPERTY(BlueprintReadWrite,Category = "BaseEnemy|Combat")
+	bool bIsInCombat = false;
 
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Movement")
 	EMovemntState CurrentMovemntState = EMovemntState::Walk;

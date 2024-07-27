@@ -29,6 +29,16 @@ public:
 	void TurnAround() override;
 	void TurnEndCallback() override;
 
+	UPROPERTY(EditDefaultsOnly,Category="Raccoon")
+	UAnimMontage* BossEntranceMontage;
+	
+	bool bIsInBossentrance = false;
+	
+	UFUNCTION(BlueprintCallable)
+	void StartBossEntrance();
+	void InitMontagesNotify();
+	void OnBossEndtranceEnd();
+
 	
 protected:
 	
