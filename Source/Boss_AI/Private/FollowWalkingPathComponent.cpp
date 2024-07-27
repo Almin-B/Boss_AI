@@ -53,13 +53,24 @@ FVector UFollowWalkingPathComponent::GetOwnerLocation()
 	return Location;
 }
 
+void UFollowWalkingPathComponent::SnapOwnerToPath()
+{
+	if(Owner)
+	{
+		float OwnerSplineDistance = WalkingPathReference->WalkingPathSpline->GetDistanceAlongSplineAtLocation(GetOwnerLocation(),ESplineCoordinateSpace::World);
+		float SnapLocY = WalkingPathReference->WalkingPathSpline->GetLocationAtDistanceAlongSpline(OwnerSplineDistance,ESplineCoordinateSpace::World).Y;
+		FVector SnapLocation = FVector(Owner->GetActorLocation().X,SnapLocY,Owner->GetActorLocation().Z);
+
+		Owner->SetActorLocation(SnapLocation);
+	}
+}
+
 
 // Called when the game starts
 void UFollowWalkingPathComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	Owner = Cast<APawn>(this->GetOwner());
-
 	// ...
 	
 }
@@ -73,6 +84,10 @@ void UFollowWalkingPathComponent::TickComponent(float DeltaTime, ELevelTick Tick
 	if(bIsUpdateActive)
 	{
 		UpdateOwnerRotation();
+	}
+	if(bSnapToPath)
+	{
+		SnapOwnerToPath();
 	}
 	// ...
 }

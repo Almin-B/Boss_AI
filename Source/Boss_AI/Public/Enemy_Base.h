@@ -100,7 +100,7 @@ public:
 	bool bIsTurning = false;
 
 	UFUNCTION(BlueprintCallable, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
-	void TurnAround();
+	virtual void TurnAround();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Movement|AdvanceMovement|Turn")
 	float TurnTimelinePlayrate = 1.0f;
@@ -114,7 +114,7 @@ public:
 	UFUNCTION()
 	void TurnTimelineCallback(float val);
 	UFUNCTION()
-	void TurnEndCallback();
+	virtual void TurnEndCallback();
 
 	void InitTurntimeline();
 

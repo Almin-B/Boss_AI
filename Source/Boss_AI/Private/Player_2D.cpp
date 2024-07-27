@@ -17,6 +17,7 @@ APlayer_2D::APlayer_2D()
 	HitBoxSpawnPoint = CreateDefaultSubobject<USphereComponent>(TEXT("HitBoxSpawnPoint"));
 	HitBoxSpawnPoint->SetupAttachment(this->GetMesh());
 	HitBoxSpawnPoint->SetSphereRadius(2.0f);
+	FollowWalkingPath = CreateDefaultSubobject<UFollowWalkingPathComponent>(TEXT("FollowWalkingPathComponent"));
 }
 
 void APlayer_2D::DetectMoveDirection(float AxisValue)
@@ -45,6 +46,7 @@ void APlayer_2D::Turn()
 		DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
 		MoveRightAxisValue = 0;
 		this->GetCharacterMovement()->StopMovementImmediately();
+		FollowWalkingPath->SetIsUpdateActive(false);
 	}
 }
 

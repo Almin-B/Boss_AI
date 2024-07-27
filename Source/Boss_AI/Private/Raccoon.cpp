@@ -9,6 +9,23 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 
+ARaccoon::ARaccoon()
+{
+	FollowWalkingPath = CreateDefaultSubobject<UFollowWalkingPathComponent>(TEXT("FollowWalkingPathComponent"));
+}
+
+void ARaccoon::TurnAround()
+{
+	Super::TurnAround();
+	FollowWalkingPath->SetIsUpdateActive(false);
+}
+
+void ARaccoon::TurnEndCallback()
+{
+	Super::TurnEndCallback();
+	FollowWalkingPath->SetIsUpdateActive(true);
+}
+
 void ARaccoon::BeginPlay()
 {
 	Super::BeginPlay();

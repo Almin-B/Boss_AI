@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "Enemy_Base.h"
 #include "Components/TimelineComponent.h"
+#include "FollowWalkingPathComponent.h"
+
+
 #include "Raccoon.generated.h"
 
 /**
@@ -17,6 +20,14 @@ class BOSS_AI_API ARaccoon : public AEnemy_Base
 	GENERATED_BODY()
 
 public:
+
+	ARaccoon();
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UFollowWalkingPathComponent* FollowWalkingPath;
+
+	void TurnAround() override;
+	void TurnEndCallback() override;
 
 	
 protected:

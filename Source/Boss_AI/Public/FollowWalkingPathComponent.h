@@ -19,8 +19,10 @@ public:
 	UFollowWalkingPathComponent();
 	
 	void UpdateOwnerRotation();
-	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
-	bool bIsUpdateActive = false;
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsUpdateActive = true;
+	UPROPERTY(EditDefaultsOnly)
+	bool bSnapToPath;
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsUpdateActive(bool isActive);
@@ -30,6 +32,8 @@ public:
 	APawn* Owner;
 	FRotator GetSplineRotation();
 	FVector GetOwnerLocation();
+
+	void SnapOwnerToPath();
 	
 protected:
 	// Called when the game starts

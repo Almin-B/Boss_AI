@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "FollowWalkingPathComponent.h"
 #include "Player_Base.h"
 #include "Player_2D.generated.h"
 
@@ -16,6 +17,9 @@ class BOSS_AI_API APlayer_2D : public APlayer_Base
 public:
 	// Sets default values for this character's properties
 	APlayer_2D();
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UFollowWalkingPathComponent* FollowWalkingPath;
 
 	// Player Movement
 	UFUNCTION(BlueprintCallable)
