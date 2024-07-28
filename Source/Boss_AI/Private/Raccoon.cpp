@@ -7,6 +7,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -34,6 +35,7 @@ void ARaccoon::StartBossEntrance()
 	{
 		bIsInBossentrance = true;
 		this->GetMesh()->GetAnimInstance()->Montage_Play(BossEntranceMontage);
+		UAIBlueprintHelperLibrary::GetBlackboard(this)->SetValueAsBool("IsInCombat",bIsInBossentrance);
 	}
 }
 

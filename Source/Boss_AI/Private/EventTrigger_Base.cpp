@@ -13,8 +13,8 @@ AEventTrigger_Base::AEventTrigger_Base()
 	PrimaryActorTick.bCanEverTick = true;
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
 	SetRootComponent(TriggerBox);
-	TriggerBox->SetBoxExtent(TriggerBoxSize);
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &AEventTrigger_Base::OnBoxBeginOverlap);
+	TriggerBox->RegisterComponent();
 }
 
 void AEventTrigger_Base::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
@@ -26,6 +26,11 @@ void AEventTrigger_Base::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, 
 void AEventTrigger_Base::OnEventExecute_Implementation()
 {
 	
+}
+
+void AEventTrigger_Base::UpdateTriggerBoxSize(FVector Size)
+{
+	TriggerBox->SetBoxExtent(Size);
 }
 
 // Called when the game starts or when spawned

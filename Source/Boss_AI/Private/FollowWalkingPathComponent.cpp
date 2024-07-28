@@ -31,14 +31,13 @@ FRotator UFollowWalkingPathComponent::GetSplineRotation()
 {
 	FRotator Rotation;
 	
-	if(WalkingPathReference)
+
+	float OwnerSplineDistance = WalkingPathReference->WalkingPathSpline->GetDistanceAlongSplineAtLocation(GetOwnerLocation(),ESplineCoordinateSpace::World);
+	Rotation = FRotator(Owner->GetActorRotation().Pitch,WalkingPathReference->WalkingPathSpline->GetRotationAtDistanceAlongSpline(OwnerSplineDistance,ESplineCoordinateSpace::World).Yaw,Owner->GetActorRotation().Roll);
+	
+	if(Owner->GetActorForwardVector().X < 0.0f)
 	{
-		float OwnerSplineDistance = WalkingPathReference->WalkingPathSpline->GetDistanceAlongSplineAtLocation(GetOwnerLocation(),ESplineCoordinateSpace::World);
-		Rotation = FRotator(Owner->GetActorRotation().Pitch,WalkingPathReference->WalkingPathSpline->GetRotationAtDistanceAlongSpline(OwnerSplineDistance,ESplineCoordinateSpace::World).Yaw,Owner->GetActorRotation().Roll);
-		if(Owner->GetActorForwardVector().X < 0.0f)
-		{
-			Rotation += FRotator(0,180,0);
-		}
+		Rotation += FRotator(0,180,0);
 	}
 	return Rotation;
 }
@@ -70,7 +69,10 @@ void UFollowWalkingPathComponent::SnapOwnerToPath()
 void UFollowWalkingPathComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	Owner = Cast<APawn>(this->GetOwner());
+	if(WalkingPathReference)
+	{
+		Owner = Cast<APawn>(this->GetOwner());
+	}
 	// ...
 	
 }
@@ -80,14 +82,16 @@ void UFollowWalkingPathComponent::BeginPlay()
 void UFollowWalkingPathComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	if(bIsUpdateActive)
+	if(WalkingPathReference)
 	{
-		UpdateOwnerRotation();
-	}
-	if(bSnapToPath)
-	{
-		SnapOwnerToPath();
+		if(bIsUpdateActive)
+		{
+			UpdateOwnerRotation();
+		}
+		if(bSnapToPath)
+		{
+			SnapOwnerToPath();
+		}
 	}
 	// ...
 }

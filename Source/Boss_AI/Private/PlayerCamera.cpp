@@ -30,11 +30,16 @@ void APlayerCamera::SetupCamera()
 	CameraArm->TargetArmLength = CameraDistance;
 	CameraArm->bDoCollisionTest = false;
 	CameraArm->bEnableCameraLag = true;
-	CameraArm->CameraLagSpeed = CameraFollowSpeed;
+	SetCameraLag(CameraFollowSpeed);
 	
 	FRotator CameraRotation = FRotator(-CameraAngle,RotationZ,0);
 	CameraArm->bInheritYaw = false;
 	CameraArm->SetRelativeRotation(CameraRotation);
+}
+
+void APlayerCamera::SetCameraLag(float LagValue)
+{
+	CameraArm->CameraLagSpeed = LagValue;
 }
 
 // Called when the game starts or when spawned

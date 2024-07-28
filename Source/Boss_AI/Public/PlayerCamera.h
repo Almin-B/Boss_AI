@@ -28,6 +28,7 @@ public:
 	UPROPERTY(EditAnywhere, Category="PlayerCamera|Settings")
 	APlayer_Base* PlayerRef;
 
+	UFUNCTION(BlueprintCallable)
 	void FocusActor(AActor* ActorToFocus);
 
 	UPROPERTY(EditDefaultsOnly, Category="PlayerCamera|Settings")
@@ -38,12 +39,15 @@ public:
 	float CameraAngle = 45.0f;
 	UPROPERTY(EditDefaultsOnly, Category="PlayerCamera|Settings")
 	float CameraBlendTime = 2.5f;
-	UPROPERTY(EditDefaultsOnly, Category="PlayerCamera|Settings")
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite, Category="PlayerCamera|Settings")
 	float CameraFollowSpeed = 10;
 	UPROPERTY(EditDefaultsOnly, Category="PlayerCamera|Settings")
 	float RotationZ;
 
 	void SetupCamera();
+
+	UFUNCTION(BlueprintCallable)
+	void SetCameraLag(float LagValue);
 
 protected:
 	// Called when the game starts or when spawned

@@ -27,7 +27,11 @@ public:
 	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
 	void OnEventExecute();
 	virtual void OnEventExecute_Implementation();
+	UPROPERTY(BlueprintReadWrite)
 	bool bIsEventExecuted = false;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateTriggerBoxSize(FVector Size);
 
 protected:
 	// Called when the game starts or when spawned
