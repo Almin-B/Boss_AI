@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Attack_Base.h"
 #include "PatrolPath.h"
 #include "Animation/AnimMontage.h"
 #include "BehaviorTree/BehaviorTree.h"
@@ -50,6 +51,12 @@ class BOSS_AI_API AEnemy_Base : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AEnemy_Base();
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="BaseEnemy|Combat")
+	TMap<FName,TSubclassOf<UAttack_Base>> EnemyAttacks;
+
+	UFUNCTION(BlueprintCallable)
+	void StartAttack(FName AttackName);
 
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "BaseEnemy|AI")
@@ -158,7 +165,7 @@ public:
 	float Guard = 0;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	float GuardEfficiency = 50;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
+	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	bool bIsGuardBroken;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	float KnockBackPower = 1500;
@@ -166,7 +173,7 @@ public:
 	float GuardBreakDamage = 25;
 	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	int BlockedHits;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
+	UPROPERTY(BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	bool bIsDecreasingStarted;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	float GuardDecreaseAmount;

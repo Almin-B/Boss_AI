@@ -16,7 +16,7 @@ public:
 	// Sets default values for this actor's properties
 	AEventTrigger_Base();
 
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UBoxComponent* TriggerBox;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="EventTrigger")
 	FVector TriggerBoxSize;

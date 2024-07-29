@@ -17,6 +17,19 @@ AEnemy_Base::AEnemy_Base()
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
 }
 
+void AEnemy_Base::StartAttack(FName AttackName)
+{
+	TSubclassOf<UAttack_Base> AttackClass = *EnemyAttacks.Find(AttackName);
+	
+	UAttack_Base* CurrentAttack = NewObject<UAttack_Base>(this,AttackClass);
+
+	if(CurrentAttack != NULL)
+	{
+		CurrentAttack->Owner = this;
+		CurrentAttack->AttackExecute();
+	}
+}
+
 void AEnemy_Base::ChangeRootmotionState(EMovemntState NewMovementState)
 {
 	CurrentMovemntState = NewMovementState;
