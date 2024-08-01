@@ -13,6 +13,7 @@ AHitBox::AHitBox()
 	PrimaryActorTick.bCanEverTick = true;
 	HitBoxCollsion = CreateDefaultSubobject<UBoxComponent>(FName("HitBoxCollison"));
 	SetRootComponent(HitBoxCollsion);
+	HitBoxCollsion->SetCollisionResponseToAllChannels(ECR_Overlap);
 }
 
 void AHitBox::InitializeHitBox()
@@ -39,19 +40,9 @@ void AHitBox::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Oth
 		{
 			if (!bHasHit)
 			{
-				if(HitBoxOwner)
-				{
-					EAttackType type = Cast<ALanceFighter>(HitBoxOwner)->CurrentCombatAttack;
-					Player->TakeHit(Damage, type);
-					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT(": %i",type));
-					//UE_LOG(LogTemp, Warning, TEXT("Name: %i"), type);
-					bHasHit = true;
-				}
-				else
-				{
-					Player->TakeHit(Damage,EAttackType::Attack_1);
-					bHasHit = true;
-				}
+				Player->TakeHit(Damage, EAttackType::Attack_1);
+				//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("HitPlayer !!!"));
+				bHasHit = true;
 			}
 		}
 	}
@@ -79,33 +70,22 @@ void AHitBox::SpawnHitBoxOverlapCheck()
 
 	for (AActor* OtherActor : OverlappingActors)
 	{
-		if (bIsEnemy)
+		if(bIsEnemy)
 		{
 			APlayer_Base* Player = Cast<APlayer_Base>(OtherActor);
 			if (Player)
 			{
 				if (!bHasHit)
 				{
-					if (HitBoxOwner)
-					{
-						EAttackType type = Cast<ALanceFighter>(HitBoxOwner)->CurrentCombatAttack;
-						Player->TakeHit(Damage, type);
-						GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("HitPlayer !!!"));
-						bHasHit = true;
-						break;
-					}
-					else
-					{
-						Player->TakeHit(Damage, EAttackType::Attack_1);
-						GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("HitPlayer !!!"));
-						bHasHit = true;
-						break;
-					}
-				}
-				else
-				{
+					Player->TakeHit(Damage, EAttackType::Attack_1);
+					//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, TEXT("HitPlayer !!!"));
+					bHasHit = true;
 					break;
 				}
+			}
+			else
+			{
+				break;
 			}
 		}
 		else

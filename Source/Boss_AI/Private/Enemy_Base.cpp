@@ -251,6 +251,7 @@ void AEnemy_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	InitTurntimeline();
+	
 }
 
 // Called every frame

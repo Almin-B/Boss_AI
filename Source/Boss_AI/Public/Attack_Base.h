@@ -21,7 +21,10 @@ public:
 	
 	virtual void AttackExecute_Implementation();
 
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
 	void AttackEnd();
+
+	virtual void AttackEnd_Implementation();
 	
 	UFUNCTION(BlueprintCallable)
 	void InterruptAttack();
@@ -35,8 +38,15 @@ public:
 	UAnimMontage* AttackMontage;
 
 	//Hitbox
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
 	void OnSpawnHitbox();
-	void InitHitboxNotify();
+
+	virtual void OnSpawnHitbox_Implementation();
+
+	UPROPERTY(BlueprintReadWrite)
+	FVector HitBoxSpawnLocation;
+
+	bool bIsSpawned = false;
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	FVector HitboxSize;

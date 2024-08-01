@@ -65,12 +65,9 @@ bool APlayer_Base::CanMove()
 	}
 }
 
-
 void APlayer_Base::TakeHit_Implementation(float Damage, EAttackType AttackType)
 {
-
 }
-
 // Called to bind functionality to input
 void APlayer_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

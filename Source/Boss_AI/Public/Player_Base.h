@@ -90,7 +90,7 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool CanMove();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
 	void TakeHit(float Damage, EAttackType AttackType);
 
 	// Called to bind functionality to input

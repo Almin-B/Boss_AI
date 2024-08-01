@@ -3,10 +3,13 @@
 
 #include "Attack_Base.h"
 
+#include "GlobalHelperFunctions.h"
+#include "SpawnCloseCombatHitboxNotify.h"
 #include "GameFramework/Character.h"
 
 UAttack_Base::UAttack_Base()
 {
+	
 }
 
 void UAttack_Base::AttackExecute_Implementation()
@@ -14,24 +17,25 @@ void UAttack_Base::AttackExecute_Implementation()
 	if(Owner && AttackMontage)
 	{
 		Owner->GetMesh()->GetAnimInstance()->Montage_Play(AttackMontage,1.0f);
-		
 	}
 }
 
-void UAttack_Base::AttackEnd()
+void UAttack_Base::AttackEnd_Implementation()
 {
-	
 }
 
 void UAttack_Base::InterruptAttack()
 {
 }
 
-void UAttack_Base::OnSpawnHitbox()
+void UAttack_Base::OnSpawnHitbox_Implementation()
 {
-	
+	if(Owner)
+	{
+		if(!bIsSpawned)
+		{
+			UGlobalHelperFunctions::SpawnHitBox(Damage,HitboxSize,HitBoxSpawnLocation,FRotator(0,0,0),HitboxLifeTime,bShowDebug,true,Owner,Owner);
+		}
+	}
 }
 
-void UAttack_Base::InitHitboxNotify()
-{
-}
