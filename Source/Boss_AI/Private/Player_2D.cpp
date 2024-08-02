@@ -8,6 +8,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "HeavyAttackFollowUpNotify.h"
+#include "IActionRecive.h"
 #include "LanceFighter.h"
 #include "MontageEndNotify.h"
 #include "SpawnCloseCombatHitboxNotify.h"
@@ -232,6 +233,11 @@ void APlayer_2D::LightAttack_Implementation()
 		this->GetMesh()->GetAnimInstance()->Montage_Play(LightAttackMontage,AttackSpeed);
 		bIsInLightAttack = true;
 		CurrentPlayerAttack = EPlayerAttackType::LightAttack;
+		if(Boss_Ref)
+		{
+			IIActionRecive* ActionReciveInterface = Cast<IIActionRecive>(Boss_Ref);
+			ActionReciveInterface->Execute_ReciveAction(Boss_Ref,CurrentPlayerAttack);
+		}
 	}
 }
 

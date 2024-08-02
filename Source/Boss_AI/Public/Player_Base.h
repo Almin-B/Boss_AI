@@ -9,7 +9,7 @@
 #include "Player_Base.generated.h"
 
 
-UENUM(BlueprintType)
+UENUM(BlueprintType,Blueprintable)
 enum class EPlayerAttackType : uint8
 {
 	LightAttack UMETA(DisplayName = "LightAttack"),

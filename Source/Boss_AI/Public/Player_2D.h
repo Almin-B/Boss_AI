@@ -54,6 +54,8 @@ public:
 	void OnRollEnd();
 
 	//Player Combat
+	UPROPERTY(BlueprintReadWrite)
+	AEnemy_Base* Boss_Ref;
 
 	//HitBox
 	EPlayerAttackType CurrentPlayerAttack;
