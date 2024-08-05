@@ -47,7 +47,9 @@ public:
 	FVector HitBoxSpawnLocation;
 
 	bool bIsSpawned = false;
-
+	
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	float AttackSpeed = 1.0f;
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	FVector HitboxSize;
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
