@@ -15,6 +15,7 @@
 ARaccoon::ARaccoon()
 {
 	FollowWalkingPath = CreateDefaultSubobject<UFollowWalkingPathComponent>(TEXT("FollowWalkingPathComponent"));
+	BossHealthbar = CreateDefaultSubobject<UBossHealthbarComponent>(TEXT("BossHealthbar"));
 }
 
 void ARaccoon::TurnAround()
@@ -35,6 +36,7 @@ void ARaccoon::StartBossEntrance()
 	{
 		bIsInBossentrance = true;
 		this->GetMesh()->GetAnimInstance()->Montage_Play(BossEntranceMontage);
+		BossHealthbar->ActivateWidget();
 		UAIBlueprintHelperLibrary::GetBlackboard(this)->SetValueAsBool("IsInCombat",bIsInBossentrance);
 	}
 }
@@ -57,6 +59,16 @@ void ARaccoon::OnBossEndtranceEnd()
 {
 	bIsInBossentrance = false;
 	bIsInCombat = true;
+}
+
+void ARaccoon::TakeHit_Implementation(float Damage)
+{
+	Super::TakeHit_Implementation(Damage);
+	if(BossHealthbar)
+	{
+		BossHealthbar->UpdateHealthbar(Health,MaxHealth);
+		BossHealthbar->ShowDamage(Damage);
+	}
 }
 
 void ARaccoon::BeginPlay()

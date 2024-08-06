@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BossHealthbarComponent.h"
 #include "Enemy_Base.h"
 #include "Components/TimelineComponent.h"
 #include "FollowWalkingPathComponent.h"
@@ -24,6 +25,9 @@ public:
 	ARaccoon();
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UBossHealthbarComponent* BossHealthbar;
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UFollowWalkingPathComponent* FollowWalkingPath;
 
 	void TurnAround() override;
@@ -39,6 +43,7 @@ public:
 	void InitMontagesNotify();
 	void OnBossEndtranceEnd();
 
+	virtual void TakeHit_Implementation(float Damage) override;
 	
 protected:
 	

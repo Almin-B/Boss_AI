@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "GlobalHelperFunctions.h"
 #include "Enemy_Base.h"
+#include "PlayerHealthbarComponent.h"
+#include "PlayerHUDWidget.h"
 #include "Player_Base.generated.h"
 
 
@@ -35,12 +37,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditDefaultsOnly,Category="Player|UI")
+	TSubclassOf<UPlayerHUDWidget> HUDWidgetClass;
+	UPROPERTY(BlueprintReadWrite,Category="Player|UI")
+	UPlayerHUDWidget* HUDWidget;
+
+	void AddHUDToScreen();
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void LightAttack();
 	virtual void LightAttack_Implementation();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void HeavyAttack();
 	virtual void HeavyAttack_Implementation();
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UPlayerHealthbarComponent* PlayerHealthbarComp;
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Player|Health")
+	float Health;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Health")
+	float MaxHealth = 100.0f;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	bool bIsAttacking;

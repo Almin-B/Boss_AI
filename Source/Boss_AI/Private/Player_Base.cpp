@@ -14,6 +14,7 @@ APlayer_Base::APlayer_Base()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SetupStimulusSource();
+	PlayerHealthbarComp = CreateDefaultSubobject<UPlayerHealthbarComponent>(TEXT("PlayerHealthbar"));
 }
 
 // Called when the game starts or when spawned
@@ -21,7 +22,10 @@ void APlayer_Base::BeginPlay()
 {
 	Super::BeginPlay();
 
+	Health = MaxHealth;
 	GetCharacterMovement()->MaxWalkSpeed = MaxMovementSpeed;
+	AddHUDToScreen();
+	PlayerHealthbarComp->ActivateWidget();
 }
 
 // Called every frame
@@ -29,6 +33,12 @@ void APlayer_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void APlayer_Base::AddHUDToScreen()
+{
+	HUDWidget = CreateWidget<UPlayerHUDWidget>(GetWorld(), HUDWidgetClass);
+	HUDWidget->AddToViewport();
 }
 
 void APlayer_Base::LightAttack_Implementation()
@@ -67,6 +77,14 @@ bool APlayer_Base::CanMove()
 
 void APlayer_Base::TakeHit_Implementation(float Damage, EAttackType AttackType)
 {
+	float NewHealth = Health -= Damage;
+	float NewHealthClamp = FMath::Clamp(NewHealth,0.0f,MaxHealth);
+	Health = NewHealthClamp;
+	PlayerHealthbarComp->UpdateHealthbar(Health,MaxHealth);
+	if(Health == 0.0f)
+	{
+		//TODO: Player Death
+	}
 }
 // Called to bind functionality to input
 void APlayer_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
