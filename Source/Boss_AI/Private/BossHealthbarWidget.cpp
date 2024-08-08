@@ -3,3 +3,6 @@
 
 #include "BossHealthbarWidget.h"
 
+void UBossHealthbarWidget::PlayHelthbarEffect_Implementation()
+{
+}

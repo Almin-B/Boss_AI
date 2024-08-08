@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "HealthbarWidget.h"
+#include "Components/SizeBox.h"
 #include "Components/TextBlock.h"
 #include "BossHealthbarWidget.generated.h"
 
@@ -19,4 +20,7 @@ public:
 	UTextBlock* Name;
 	UPROPERTY(EditAnywhere, meta = (BindWidget))
 	UTextBlock* Damage;
+
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
+	void PlayHelthbarEffect();
 };

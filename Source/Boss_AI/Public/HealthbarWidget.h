@@ -20,9 +20,9 @@ public:
 	void SetHealthbarPrecent(float HealthbarPrecent);
 	UFUNCTION(BlueprintCallable)
 	void SetBackgroundHealthbarPrecent(float HealthbarPrecent);
-	UPROPERTY(EditAnywhere, meta = (BindWidget))
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ProgressBar;
-	UPROPERTY(EditAnywhere, meta = (BindWidget))
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta = (BindWidget))
 	UProgressBar* ProgressBar_Background;
 	
 };

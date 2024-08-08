@@ -33,9 +33,11 @@ void UBossHealthbarComponent::ShowDamage(float DamageToDisplay)
 	UBossHealthbarWidget* BossHealthbarWidget = Cast<UBossHealthbarWidget>(HealthbarWidget);
 	if(BossHealthbarWidget)
 	{
-		int DamageInt = FMath::TruncToInt(DamageToDisplay);
+		DamageSum += DamageToDisplay;
+		int DamageInt = FMath::TruncToInt(DamageSum);
 		FString DamageDisplay = FString::FromInt(DamageInt);
 		BossHealthbarWidget->Damage->SetText(FText::FromString(DamageDisplay));
+		BossHealthbarWidget->PlayHelthbarEffect();
 		GetWorld()->GetTimerManager().SetTimer(ShowDamageTimerHandle,this,&UBossHealthbarComponent::RemoveDamageDisplay,RemoveDamageDisplayDelay,false);
 	}
 }
@@ -46,5 +48,8 @@ void UBossHealthbarComponent::RemoveDamageDisplay()
 	if(BossHealthbarWidget)
 	{
 		BossHealthbarWidget->Damage->SetText(FText());
+		DamageSum = 0.0f;
 	}
 }
+
+

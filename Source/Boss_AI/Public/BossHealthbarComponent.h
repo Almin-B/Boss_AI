@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BossHealthbarWidget.h"
 #include "Healthbar.h"
 #include "BossHealthbarComponent.generated.h"
 
@@ -20,6 +21,8 @@ public:
 	FText BossName;
 	UPROPERTY(EditDefaultsOnly, Category="Healthbar")
 	float RemoveDamageDisplayDelay = 1.0f;
+
+	float DamageSum;
 
 	UFUNCTION(BlueprintCallable)
 	void ShowDamage(float DamageToDisplay);
