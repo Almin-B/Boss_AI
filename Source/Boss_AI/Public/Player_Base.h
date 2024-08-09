@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "GlobalHelperFunctions.h"
 #include "Enemy_Base.h"
+#include "InventoryComponent.h"
+#include "LanceFighter.h"
 #include "PlayerHealthbarComponent.h"
 #include "PlayerHUDWidget.h"
 #include "Player_Base.generated.h"
@@ -41,6 +43,7 @@ public:
 	TSubclassOf<UPlayerHUDWidget> HUDWidgetClass;
 	UPROPERTY(BlueprintReadWrite,Category="Player|UI")
 	UPlayerHUDWidget* HUDWidget;
+	
 
 	void AddHUDToScreen();
 

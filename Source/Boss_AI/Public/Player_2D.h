@@ -21,6 +21,9 @@ public:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UFollowWalkingPathComponent* FollowWalkingPath;
 
+	UPROPERTY(BlueprintReadWrite,EditDefaultsOnly)
+	UInventoryComponent* InventoryComp;
+
 	// Player Movement
 	UFUNCTION(BlueprintCallable)
 	void DetectMoveDirection(float AxisValue);
@@ -36,6 +39,16 @@ public:
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	float RootVelocity;
 	bool CanTurn();
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Player|Movement|Turn")
+	float TurnRate = 1.0f;
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Player|Movement|Turn")
+	UAnimSequenceBase* TurnAnimation;
+	
+	float TurnDuration;
+	FTimerHandle TurnTimerHandle;
+
+	void OnTurnEnd();
 
 	void InitMovementNotifys();
 

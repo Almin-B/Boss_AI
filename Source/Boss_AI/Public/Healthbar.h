@@ -33,6 +33,7 @@ public:
 	float UpdateBackgroundHealthbarSpeed = 0.1f;
 
 
+	UPROPERTY(BlueprintReadWrite)
 	UHealthbarWidget* HealthbarWidget;
 
 	bool bIsHealthbarActivated = false;

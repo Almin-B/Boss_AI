@@ -3,23 +3,25 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemWidget.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/VerticalBox.h"
-#include "PlayerHUDWidget.generated.h"
+#include "Components/Image.h"
+#include "Components/TextBlock.h"
+#include "ItemWidget.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BOSS_AI_API UPlayerHUDWidget : public UUserWidget
+class BOSS_AI_API UItemWidget : public UUserWidget
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, meta = (BindWidget))
-	UVerticalBox* BossHealthbarSlot;
+	UImage* ItemIcon;
 	UPROPERTY(EditAnywhere, meta = (BindWidget))
-	UVerticalBox* PlayerHealthbarSlot;
-	UPROPERTY(EditAnywhere, meta = (BindWidget))
-	UItemWidget* ItemWidget;
+	UTextBlock* ItemName;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateItemDisplay(UTexture2D* ItemTexture, FName ItemText);
+	
 };

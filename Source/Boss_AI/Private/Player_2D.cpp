@@ -19,6 +19,7 @@ APlayer_2D::APlayer_2D()
 	HitBoxSpawnPoint->SetupAttachment(this->GetMesh());
 	HitBoxSpawnPoint->SetSphereRadius(2.0f);
 	FollowWalkingPath = CreateDefaultSubobject<UFollowWalkingPathComponent>(TEXT("FollowWalkingPathComponent"));
+	InventoryComp = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
 }
 
 void APlayer_2D::DetectMoveDirection(float AxisValue)
@@ -41,13 +42,19 @@ void APlayer_2D::DetectMoveDirection(float AxisValue)
 
 void APlayer_2D::Turn()
 {
-	if(CanTurn())
+	if(CanTurn() && TurnAnimation)
 	{
-		bIsTurning = true;
-		DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
-		MoveRightAxisValue = 0;
-		this->GetCharacterMovement()->StopMovementImmediately();
-		FollowWalkingPath->SetIsUpdateActive(false);
+		if(!GetWorldTimerManager().IsTimerActive(TurnTimerHandle))
+		{
+			bIsTurning = true;
+			DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
+			MoveRightAxisValue = 0;
+			this->GetCharacterMovement()->StopMovementImmediately();
+			FollowWalkingPath->SetIsUpdateActive(false);
+		
+			TurnDuration = TurnAnimation->GetPlayLength() / TurnRate;
+			GetWorldTimerManager().SetTimer(TurnTimerHandle,this,&APlayer_2D::OnTurnEnd,TurnDuration,false);
+		}
 	}
 }
 
@@ -80,6 +87,16 @@ bool APlayer_2D::CanRoll()
 	{
 		return false;
 	}
+}
+
+void APlayer_2D::OnTurnEnd()
+{
+	bIsTurning = false;
+	FollowWalkingPath->SetIsUpdateActive(true);
+	
+	EnableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
+	
+	GetWorldTimerManager().ClearTimer(TurnTimerHandle);
 }
 
 void APlayer_2D::InitMovementNotifys()
@@ -233,11 +250,6 @@ void APlayer_2D::LightAttack_Implementation()
 		this->GetMesh()->GetAnimInstance()->Montage_Play(LightAttackMontage,AttackSpeed);
 		bIsInLightAttack = true;
 		CurrentPlayerAttack = EPlayerAttackType::LightAttack;
-		if(Boss_Ref)
-		{
-			IIActionRecive* ActionReciveInterface = Cast<IIActionRecive>(Boss_Ref);
-			ActionReciveInterface->Execute_ReciveAction(Boss_Ref,CurrentPlayerAttack);
-		}
 	}
 }
 
@@ -263,6 +275,7 @@ void APlayer_2D::OnLightAttackEnd()
 
 void APlayer_2D::OnSpawnHitbox()
 {
+	
 	if(MappedAttackInformation.Find(CurrentPlayerAttack))
 	{
 		float Damage = MappedAttackInformation.Find(CurrentPlayerAttack)->Damage;
