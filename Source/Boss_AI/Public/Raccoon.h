@@ -7,6 +7,7 @@
 #include "Enemy_Base.h"
 #include "Components/TimelineComponent.h"
 #include "FollowWalkingPathComponent.h"
+#include "Components/SphereComponent.h"
 
 
 #include "Raccoon.generated.h"
