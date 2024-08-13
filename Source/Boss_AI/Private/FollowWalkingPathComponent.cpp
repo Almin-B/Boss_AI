@@ -58,6 +58,7 @@ void UFollowWalkingPathComponent::SnapOwnerToPath()
 	{
 		float OwnerSplineDistance = WalkingPathReference->WalkingPathSpline->GetDistanceAlongSplineAtLocation(GetOwnerLocation(),ESplineCoordinateSpace::World);
 		float SnapLocY = WalkingPathReference->WalkingPathSpline->GetLocationAtDistanceAlongSpline(OwnerSplineDistance,ESplineCoordinateSpace::World).Y;
+		SnapLocY += LineOffset;
 		FVector SnapLocation = FVector(Owner->GetActorLocation().X,SnapLocY,Owner->GetActorLocation().Z);
 
 		Owner->SetActorLocation(SnapLocation);

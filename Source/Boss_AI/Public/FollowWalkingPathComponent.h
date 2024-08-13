@@ -23,6 +23,8 @@ public:
 	bool bIsUpdateActive = true;
 	UPROPERTY(EditDefaultsOnly)
 	bool bSnapToPath;
+	UPROPERTY(EditDefaultsOnly)
+	float LineOffset = 0.0f; 
 
 	UFUNCTION(BlueprintCallable)
 	void SetIsUpdateActive(bool isActive);

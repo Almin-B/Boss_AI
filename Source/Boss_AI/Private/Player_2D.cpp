@@ -12,6 +12,7 @@
 #include "LanceFighter.h"
 #include "MontageEndNotify.h"
 #include "SpawnCloseCombatHitboxNotify.h"
+#include "Components/CapsuleComponent.h"
 
 APlayer_2D::APlayer_2D()
 {
@@ -119,12 +120,14 @@ void APlayer_2D::Roll()
 	{
 		bIsRolling = true;
 		this->GetMesh()->GetAnimInstance()->Montage_Play(RollMontage,RollSpeed);
+		this->GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1,ECR_Ignore);
 	}
 }
 
 void APlayer_2D::OnRollEnd()
 {
 	bIsRolling = false;
+	this->GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_GameTraceChannel1,ECR_Block);
 }
 
 void APlayer_2D::HeavyAttackFollowup()

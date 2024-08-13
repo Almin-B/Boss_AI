@@ -23,7 +23,9 @@ APlayerCamera::APlayerCamera()
 
 void APlayerCamera::FocusActor(AActor* ActorToFocus)
 {
-	this->AttachToActor(ActorToFocus,FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
+	Rules.RotationRule = EAttachmentRule::KeepWorld;
+	this->AttachToActor(ActorToFocus,Rules);
 }
 void APlayerCamera::SetupCamera()
 {

@@ -19,8 +19,9 @@ public:
 	// Sets default values for this actor's properties
 	APlayerCamera();
 
-	
+	UPROPERTY(EditDefaultsOnly)
 	UCameraComponent* PlayerCam;
+	UPROPERTY(EditDefaultsOnly)
 	USphereComponent* Anchor;
 	UPROPERTY(EditDefaultsOnly)
 	USpringArmComponent* CameraArm;
