@@ -43,19 +43,23 @@ void APlayer_2D::DetectMoveDirection(float AxisValue)
 
 void APlayer_2D::Turn()
 {
-	if(CanTurn() && TurnAnimation)
+	//if(CanTurn() && TurnAnimation)
+	//{
+	//	if(!GetWorldTimerManager().IsTimerActive(TurnTimerHandle))
+	//	{
+	//		bIsTurning = true;
+	//		DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
+	//		MoveRightAxisValue = 0;
+	//		this->GetCharacterMovement()->StopMovementImmediately();
+	//		FollowWalkingPath->SetIsUpdateActive(false);
+	//	
+	//		TurnDuration = TurnAnimation->GetPlayLength() / TurnRate;
+	//		GetWorldTimerManager().SetTimer(TurnTimerHandle,this,&APlayer_2D::OnTurnEnd,TurnDuration,false);
+	//	}
+	//}
+	if(CanTurn())
 	{
-		if(!GetWorldTimerManager().IsTimerActive(TurnTimerHandle))
-		{
-			bIsTurning = true;
-			DisableInput(UGameplayStatics::GetPlayerController(GetWorld(),0));
-			MoveRightAxisValue = 0;
-			this->GetCharacterMovement()->StopMovementImmediately();
-			FollowWalkingPath->SetIsUpdateActive(false);
-		
-			TurnDuration = TurnAnimation->GetPlayLength() / TurnRate;
-			GetWorldTimerManager().SetTimer(TurnTimerHandle,this,&APlayer_2D::OnTurnEnd,TurnDuration,false);
-		}
+		this->SetActorRotation(this->GetActorRotation() + FRotator(0,180,0));
 	}
 }
 
