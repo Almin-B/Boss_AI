@@ -39,8 +39,11 @@ public:
 	
 	bool bIsInBossentrance = false;
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable,BlueprintNativeEvent)
 	void StartBossEntrance();
+	
+	virtual void StartBossEntrance_Implementation();
+	
 	void InitMontagesNotify();
 	void OnBossEndtranceEnd();
 

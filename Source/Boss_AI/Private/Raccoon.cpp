@@ -30,7 +30,7 @@ void ARaccoon::TurnEndCallback()
 	FollowWalkingPath->SetIsUpdateActive(true);
 }
 
-void ARaccoon::StartBossEntrance()
+void ARaccoon::StartBossEntrance_Implementation()
 {
 	if(BossEntranceMontage)
 	{
