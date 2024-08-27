@@ -25,8 +25,8 @@ public:
 	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	UFUNCTION(BlueprintNativeEvent,BlueprintCallable)
-	void OnEventExecute();
-	virtual void OnEventExecute_Implementation();
+	void OnEventExecute(AActor* OtherActor);
+	virtual void OnEventExecute_Implementation(AActor* OtherActor);
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsEventExecuted = false;
 

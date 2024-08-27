@@ -8,6 +8,7 @@
 #include "Components/TimelineComponent.h"
 #include "FollowWalkingPathComponent.h"
 #include "Components/SphereComponent.h"
+#include "Engine/TargetPoint.h"
 
 
 #include "Raccoon.generated.h"
@@ -48,6 +49,9 @@ public:
 	void OnBossEndtranceEnd();
 
 	virtual void TakeHit_Implementation(float Damage) override;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category="Raccoon|Combat|RollAttack")
+	ATargetPoint* RollStartPoint;
 	
 protected:
 	

@@ -23,20 +23,38 @@ APlayerCamera::APlayerCamera()
 
 void APlayerCamera::FocusActor(AActor* ActorToFocus)
 {
-	FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
-	Rules.RotationRule = EAttachmentRule::KeepWorld;
-	this->AttachToActor(ActorToFocus,Rules);
+	//FAttachmentTransformRules Rules = FAttachmentTransformRules::SnapToTargetNotIncludingScale;
+	//Rules.RotationRule = EAttachmentRule::KeepWorld;
+	//this->AttachToActor(ActorToFocus,Rules);
+	if(!GetWorldTimerManager().IsTimerActive(UpdateCameraHandle))
+	{
+		GetWorldTimerManager().SetTimer(UpdateCameraHandle,this,&APlayerCamera::UpdateCamera,CameraUpdateTick,true);
+	}
+
+	TargetActor = ActorToFocus;
+	//GetWorldTimerManager().SetTimer(UpdateCameraHandle,this,&APlayerCamera::UpdateCamera,CameraUpdateTick,true);
+	
 }
 void APlayerCamera::SetupCamera()
 {
 	CameraArm->TargetArmLength = CameraDistance;
 	CameraArm->bDoCollisionTest = false;
 	CameraArm->bEnableCameraLag = true;
-	SetCameraLag(CameraFollowSpeed);
+	SetCameraLag(CameraLag);
 	
 	FRotator CameraRotation = FRotator(-CameraAngle,RotationZ,0);
 	CameraArm->bInheritYaw = false;
 	CameraArm->SetRelativeRotation(CameraRotation);
+}
+
+void APlayerCamera::UpdateCamera()
+{
+	if(TargetActor)
+	{
+		FVector TargetLocation = TargetActor->GetActorLocation() + (TargetActor->GetActorForwardVector() * CameraOffset);
+		//this->SetActorLocation(TargetLocation);
+		this->SetActorLocation(FMath::VInterpTo(this->GetActorLocation(),TargetLocation,CameraUpdateTick,CameraFollowSpeed));
+	}
 }
 
 void APlayerCamera::SetCameraLag(float LagValue)

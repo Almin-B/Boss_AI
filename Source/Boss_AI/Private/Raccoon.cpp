@@ -63,11 +63,27 @@ void ARaccoon::OnBossEndtranceEnd()
 
 void ARaccoon::TakeHit_Implementation(float Damage)
 {
-	Super::TakeHit_Implementation(Damage);
+	//Take Damage
+	Health -= Damage;
+
+	//Display Damage in UI
 	if(BossHealthbar)
 	{
 		BossHealthbar->UpdateHealthbar(Health,MaxHealth);
 		BossHealthbar->ShowDamage(Damage);
+	}
+
+	//Take Guard Damage
+	Guard += Damage * 0.25f;
+	if(Guard >= 100)
+	{
+		BreakGurad();
+	}
+
+	// Enter second Phase
+	if(Health <= MaxHealth/2.0f)
+	{
+		UAIBlueprintHelperLibrary::GetBlackboard(this)->SetValueAsInt("PhaseIndex",1);
 	}
 }
 

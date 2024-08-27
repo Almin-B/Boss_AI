@@ -18,12 +18,15 @@ AHitBox::AHitBox()
 
 void AHitBox::InitializeHitBox()
 {
-	HitBoxCollsion->SetBoxExtent(HitBoxSize, false);
-	HitBoxCollsion->bHiddenInGame = !bShowHitBoxBounds;
-	GetWorld()->GetTimerManager().SetTimer(DestroyTimer, this, &AHitBox::DestroyHitBox, LifeTime, false);
+	if(HitBoxCollsion)
+	{
+		HitBoxCollsion->SetBoxExtent(HitBoxSize, false);
+		HitBoxCollsion->bHiddenInGame = !bShowHitBoxBounds;
+		GetWorld()->GetTimerManager().SetTimer(DestroyTimer, this, &AHitBox::DestroyHitBox, LifeTime, false);
     
-	SpawnHitBoxOverlapCheck();
-	HitBoxCollsion->OnComponentBeginOverlap.AddDynamic(this, &AHitBox::OnBoxBeginOverlap);
+		SpawnHitBoxOverlapCheck();
+		HitBoxCollsion->OnComponentBeginOverlap.AddDynamic(this, &AHitBox::OnBoxBeginOverlap);
+	}
 }
 
 void AHitBox::DestroyHitBox()

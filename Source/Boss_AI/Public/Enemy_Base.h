@@ -150,9 +150,13 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void BreakGurad();
 
+	virtual void BreakGurad_Implementation();
+
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void Death();
-
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
+	float StunDuration = 3.0f;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
 	bool bIsBlocking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "BaseEnemy|Defense")
