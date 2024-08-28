@@ -24,7 +24,7 @@ An object is created that exists in the background and contains information for 
  
 ## Boss Entrance
 A start sequence that is activated when entering the boss arena that starts the boss fight
-<img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Entrance.gif" width="50%" height="50%"/>
+<img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Entrance.gif" width="120%" height="120%"/>
 ## Attacks
 
  ### Simple Attacks
