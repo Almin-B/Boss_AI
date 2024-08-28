@@ -12,6 +12,7 @@ An object is created that exists in the background and contains information for 
 
  ### Creation
  ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif" width="250" height="250"/>
 
  Example of information and scripts in an attack object:
  ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/AttackObj_01.PNG)
