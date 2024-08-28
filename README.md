@@ -3,6 +3,44 @@
 In this Unreal Engine 5 project, I am diving deep into the world of AI programming for enemies. As I craft and fine-tune their behaviors, this project is to push the boundaries of my knowledge and skills in game development. 
 With each new enemy AI that I create and add to my collection, I am not only showcasing my expertise in AI programming but also expanding my capabilities in creating immersive and challenging gameplay experiences.
 
+# Currupted Raccoon
+
+## Attack Objects
+Attack Objects is a easy method for creating and executing attacks or actions.
+An object is created that exists in the background and contains information for the desired attack/action and is deleted after execution. This makes it easy to create attacks or actions which are then be executed by the enemy and each attack/action is separated from one another, making the addition of new attacks/actions more organized.
+
+
+ ### Creation
+
+ Example of information and scripts in an attack object:
+
+ ### Assign
+
+ ### Attack Execute
+
+## Boss Entrance
+A start sequence that is activated when entering the boss arena that starts the boss fight
+
+## Attacks
+
+ ### Simple Attacks
+ Simple bite and claw attacks that are combined and executed rapidly by the boss
+
+ ### Delayed Attack
+ An attack that is delayed by the boss to disorient the player
+ 
+ ### Stumper Attack
+ An environmental attack that deals damage to everything within a radius of the boss
+
+ ### Roll Attack
+ An attack that is added in the second phase (below 50 % boss life) in which the boss first jumps upwards and disappears from sight, only to deal major damage to the player after a short time with a roll attack. During this attack, the player is warned which side the attack is coming from (indicated by a red pulse effect in the HUD).
+ 
+## Player Action Reading and Player Punishment
+The boss can read certain actions of the player and then execute counter attacks to punish the player. In this case, the boss only reads whether the player is healing, which means that badly timed heals are punished (the boss has a 50% chance of performing a counterattack).
+
+## Boss Stunn
+The Guard mechanic already implemented in SpearFighter was also used here, where the boss's guard breaks and he cannot move for a short time.
+
 # SpearFighter
 
 ## Patrolling
