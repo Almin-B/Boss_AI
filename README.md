@@ -37,27 +37,27 @@ A start sequence that is activated when entering the boss arena that starts the 
  ### Delayed Attack
  An attack that is delayed by the boss to disorient the player
  
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Delay.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Delay.gif" width="85%" height="85%"/>
  
  ### Stumper Attack
  An environmental attack that deals damage to everything within a radius of the boss
  
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Stumper.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Stumper.gif" width="85%" height="85%"/>
  
  ### Roll Attack
  An attack that is added in the second phase (below 50 % boss life) in which the boss first jumps upwards and disappears from sight, only to deal major damage to the player after a short time with a roll attack. During this attack, the player is warned which side the attack is coming from (indicated by a red pulse effect in the HUD).
  
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_RollAttack.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_RollAttack.gif" width="85%" height="85%"/>
  
 ## Player Action Reading and Player Punishment
 The boss can read certain actions of the player and then execute counter attacks to punish the player. In this case, the boss only reads whether the player is healing, which means that badly timed heals are punished (the boss has a 50% chance of performing a counterattack).
 
-![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_PunishAttack.gif)
+<img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_PunishAttack.gif" width="85%" height="85%"/>
 
 ## Boss Stunn
 The Guard mechanic already implemented in SpearFighter was also used here, where the boss's guard breaks and he cannot move for a short time.
 
-![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Stunn.gif)
+<img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Stunn.gif" width="85%" height="85%"/>
 
 # SpearFighter
 
