@@ -11,17 +11,16 @@ An object is created that exists in the background and contains information for 
 
 
  ### Creation
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif)
  <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif" width="50%" height="50%"/>
 
  Example of information and scripts in an attack object:
  ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/AttackObj_01.PNG)
  
  ### Assign
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/AssignAttackObj.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/AssignAttackObj.gif" width="50%" height="50%"/>
  
  ### Attack Execute
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/ExecuteAttackObj.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/ExecuteAttackObj.gif" width="50%" height="50%"/>
  
 ## Boss Entrance
 A start sequence that is activated when entering the boss arena that starts the boss fight
