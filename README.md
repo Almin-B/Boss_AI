@@ -31,8 +31,8 @@ A start sequence that is activated when entering the boss arena that starts the 
  ### Simple Attacks
  Simple bite and claw attacks that are combined and executed rapidly by the boss
  
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Simple_01.gif)
- ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Simple_02.gif)
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Simple_01.gif" width="85%" height="85%"/>
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/BossAI_Attack_Simple_02.gif" width="85%" height="85%"/>
  
  ### Delayed Attack
  An attack that is delayed by the boss to disorient the player
