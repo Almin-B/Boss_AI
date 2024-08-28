@@ -11,8 +11,8 @@ An object is created that exists in the background and contains information for 
 
 
  ### Creation
- <img src=<https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif>  height="275">
- 
+ <img src=<![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/CreateAttackObj.gif)>  height="275">
+
  Example of information and scripts in an attack object:
  ![](https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/AttackObj_01.PNG)
  
