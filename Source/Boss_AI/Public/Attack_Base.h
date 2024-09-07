@@ -51,6 +51,8 @@ public:
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	float AttackSpeed = 1.0f;
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	bool bIsFromEnemy = true;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	FVector HitboxSize;
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	float Damage;

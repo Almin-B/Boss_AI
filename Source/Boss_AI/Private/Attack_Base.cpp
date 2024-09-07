@@ -34,7 +34,7 @@ void UAttack_Base::OnSpawnHitbox_Implementation()
 	{
 		if(!bIsSpawned)
 		{
-			UGlobalHelperFunctions::SpawnHitBox(Damage,HitboxSize,HitBoxSpawnLocation,FRotator(0,0,0),HitboxLifeTime,bShowDebug,true,Owner,Owner);
+			UGlobalHelperFunctions::SpawnHitBox(Damage,HitboxSize,HitBoxSpawnLocation,FRotator(0,0,0),HitboxLifeTime,bShowDebug,bIsFromEnemy,Owner,Owner);
 		}
 	}
 }

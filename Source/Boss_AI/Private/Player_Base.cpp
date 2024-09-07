@@ -35,6 +35,7 @@ void APlayer_Base::Tick(float DeltaTime)
 
 }
 
+
 void APlayer_Base::AddHUDToScreen()
 {
 	HUDWidget = CreateWidget<UPlayerHUDWidget>(GetWorld(), HUDWidgetClass);
@@ -49,6 +50,19 @@ void APlayer_Base::LightAttack_Implementation()
 void APlayer_Base::HeavyAttack_Implementation()
 {
 	
+}
+
+void APlayer_Base::StartAttack(FName AttackName)
+{
+	TSubclassOf<UAttack_Base> AttackClass = *PlayerAttacks.Find(AttackName);
+	
+	UAttack_Base* CurrentAttack = NewObject<UAttack_Base>(this,AttackClass);
+
+	if(CurrentAttack != NULL)
+	{
+		CurrentAttack->Owner = this;
+		CurrentAttack->AttackExecute();
+	}
 }
 
 bool APlayer_Base::IsAttackMontageValid()

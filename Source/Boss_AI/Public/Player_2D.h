@@ -79,6 +79,7 @@ public:
 	USphereComponent* HitBoxSpawnPoint;
 	
 	//Light Attack
+	UPROPERTY(BlueprintReadWrite)
 	bool bIsInLightAttack;
 
 	void LightAttack_Implementation() override;
@@ -93,6 +94,7 @@ public:
 	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|Special")
 	UAnimMontage* SpecialAttack_Montage;
 
+	UPROPERTY(BlueprintReadWrite)
 	bool bIsInHeavyAttack;
 	int HeavyAttackComboCount = 0;
 	
@@ -107,6 +109,7 @@ public:
 	void SpecialAttack();
 	void OnSpecialAttackEnd();
 	void InitSpecialAttackNotify();
+	UPROPERTY(BlueprintReadWrite)
 	bool bIsInSpecialAttack;
 
 	protected:

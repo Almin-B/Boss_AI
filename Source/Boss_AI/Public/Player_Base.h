@@ -62,6 +62,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Health")
 	float MaxHealth = 100.0f;
 
+	
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite,Category="Player|Combat")
+	TMap<FName,TSubclassOf<UAttack_Base>> PlayerAttacks;
+	UFUNCTION(BlueprintCallable)
+	void StartAttack(FName AttackName);
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	bool bIsAttacking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
