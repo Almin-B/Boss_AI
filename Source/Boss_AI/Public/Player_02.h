@@ -4,17 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Player_Base.h"
+#include "Player_Guts.h"
 #include "Player_02.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BOSS_AI_API APlayer_02 : public APlayer_Base
+class BOSS_AI_API APlayer_Guts_3D : public APlayer_Guts
 {
 	GENERATED_BODY()
 
-	APlayer_02();
+	APlayer_Guts_3D();
 
 public:
 	
@@ -34,17 +35,6 @@ public:
 	float MoveForwardAxisValue;
 	UPROPERTY(BlueprintReadWrite,Category="Player|Movement")
 	bool bIsSprinting;
-
-
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInLightAttack;
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInHeavyAttack;
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInSpecialAttack;
-
-	UPROPERTY(EditDefaultsOnly)
-	USphereComponent* HitBoxSpawnPoint;
 
 protected:
 	// Called when the game starts or when spawned

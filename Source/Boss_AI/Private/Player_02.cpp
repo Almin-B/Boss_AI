@@ -5,15 +5,12 @@
 
 #include "Kismet/KismetMathLibrary.h"
 
-APlayer_02::APlayer_02()
+APlayer_Guts_3D::APlayer_Guts_3D()
 {
-	HitBoxSpawnPoint = CreateDefaultSubobject<USphereComponent>(TEXT("HitBoxSpawnPoint"));
-	HitBoxSpawnPoint->SetupAttachment(this->GetMesh());
-	HitBoxSpawnPoint->SetSphereRadius(2.0f);
 	InventoryComp = CreateDefaultSubobject<UInventoryComponent>(TEXT("InventoryComponent"));
 }
 
-void APlayer_02::AddRootmotionMovementInput(float ForwardAxisValue, float RightAxisValue, float MovementThreshold)
+void APlayer_Guts_3D::AddRootmotionMovementInput(float ForwardAxisValue, float RightAxisValue, float MovementThreshold)
 {
 	if(ForwardAxisValue < -MovementThreshold || ForwardAxisValue > MovementThreshold || RightAxisValue < -MovementThreshold || RightAxisValue > MovementThreshold)
 	{
@@ -25,7 +22,7 @@ void APlayer_02::AddRootmotionMovementInput(float ForwardAxisValue, float RightA
 	}
 }
 
-void APlayer_02::OrientRotationToRootmotion(float ForwardAxisValue, float RightAxisValue,float MovementThreshold)
+void APlayer_Guts_3D::OrientRotationToRootmotion(float ForwardAxisValue, float RightAxisValue,float MovementThreshold)
 {
 	if(ForwardAxisValue < -MovementThreshold || ForwardAxisValue > MovementThreshold || RightAxisValue < -MovementThreshold || RightAxisValue > MovementThreshold)
 	{
@@ -36,12 +33,12 @@ void APlayer_02::OrientRotationToRootmotion(float ForwardAxisValue, float RightA
 	}
 }
 
-void APlayer_02::BeginPlay()
+void APlayer_Guts_3D::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void APlayer_02::Tick(float DeltaTime)
+void APlayer_Guts_3D::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }

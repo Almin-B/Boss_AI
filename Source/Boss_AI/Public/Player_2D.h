@@ -5,18 +5,19 @@
 #include "CoreMinimal.h"
 #include "FollowWalkingPathComponent.h"
 #include "Player_Base.h"
+#include "Player_Guts.h"
 #include "Player_2D.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class BOSS_AI_API APlayer_2D : public APlayer_Base
+class BOSS_AI_API APlayer_Guts_2D : public APlayer_Guts
 {
 	GENERATED_BODY()
 public:
 	// Sets default values for this character's properties
-	APlayer_2D();
+	APlayer_Guts_2D();
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UFollowWalkingPathComponent* FollowWalkingPath;
@@ -70,47 +71,6 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	AEnemy_Base* Boss_Ref;
 
-	//HitBox
-	EPlayerAttackType CurrentPlayerAttack;
-	void OnSpawnHitbox();
-	void InitHitboxNotify();
-
-	UPROPERTY(EditDefaultsOnly)
-	USphereComponent* HitBoxSpawnPoint;
-	
-	//Light Attack
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInLightAttack;
-
-	void LightAttack_Implementation() override;
-	void InitLightAttackNotify();
-	void OnLightAttackEnd();
-	
-	//Heavy Attack
-	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|HeavyAttack")
-	UAnimMontage* HeavyAttack_StrikeUp_Montage;
-	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|HeavyAttack")
-	UAnimMontage* HeavyAttack_FollowUp_Montage;
-	UPROPERTY(EditDefaultsOnly,Category="Player|Combat|Special")
-	UAnimMontage* SpecialAttack_Montage;
-
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInHeavyAttack;
-	int HeavyAttackComboCount = 0;
-	
-	void HeavyAttackFollowup();
-	void HeavyAttack_Implementation() override;
-	void InitHeavyAttackNotify();
-	void OnHeavyAttackEnd();
-
-	//Special Attack
-
-	UFUNCTION(BlueprintCallable)
-	void SpecialAttack();
-	void OnSpecialAttackEnd();
-	void InitSpecialAttackNotify();
-	UPROPERTY(BlueprintReadWrite)
-	bool bIsInSpecialAttack;
 
 	protected:
 	// Called when the game starts or when spawned

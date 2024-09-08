@@ -40,7 +40,7 @@ void UInventoryComponent::AddItemToInventory(FName ItemName)
 
 void UInventoryComponent::UpdateItemDisplay()
 {
-	APlayer_2D* Owner = Cast<APlayer_2D>(this->GetOwner());
+	APlayer_Guts* Owner = Cast<APlayer_Guts>(this->GetOwner());
 	if(Owner && ActivItem)
 	{
 		if(Owner->HUDWidget)

@@ -42,16 +42,6 @@ void APlayer_Base::AddHUDToScreen()
 	HUDWidget->AddToViewport();
 }
 
-void APlayer_Base::LightAttack_Implementation()
-{
-	
-}
-
-void APlayer_Base::HeavyAttack_Implementation()
-{
-	
-}
-
 void APlayer_Base::StartAttack(FName AttackName)
 {
 	TSubclassOf<UAttack_Base> AttackClass = *PlayerAttacks.Find(AttackName);
@@ -62,18 +52,6 @@ void APlayer_Base::StartAttack(FName AttackName)
 	{
 		CurrentAttack->Owner = this;
 		CurrentAttack->AttackExecute();
-	}
-}
-
-bool APlayer_Base::IsAttackMontageValid()
-{
-	if (LightAttackMontage && HeavyAttackMontage)
-	{
-		return true;
-	}
-	else
-	{	
-		return false;
 	}
 }
 

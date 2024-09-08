@@ -47,13 +47,6 @@ public:
 
 	void AddHUDToScreen();
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void LightAttack();
-	virtual void LightAttack_Implementation();
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void HeavyAttack();
-	virtual void HeavyAttack_Implementation();
-
 	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
 	UPlayerHealthbarComponent* PlayerHealthbarComp;
 	
@@ -71,15 +64,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	bool bIsAttacking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
-	float AttackSpeed = 2;
-	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite, Category="Player|Combat|LightAttack")
-	UAnimMontage* LightAttackMontage;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat|HeavyAttack")
-	UAnimMontage* HeavyAttackMontage;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
 	float DashPower = 5000;
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat")
-	TMap<EPlayerAttackType, FAttackInformation> MappedAttackInformation;
 	UPROPERTY(BlueprintReadWrite, Category = "Player|Combat|Defense")
 	bool bIsBlocking;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player|Combat|Defense")
@@ -109,9 +94,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Player|Camera")
 	AEnemy_Base* FocusedEnemy;
 	
-
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool IsAttackMontageValid();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool CanMove();
