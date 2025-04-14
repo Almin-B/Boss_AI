@@ -12,7 +12,9 @@
 				"Engine",
 				"AIModule",
 				"UMG",
-				"CoreUObject"
+				"CoreUObject",
+				"MassSpawner",
+				"MassEntity"
 			]
 		}
 	],
@@ -23,6 +25,26 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "MassAI",
+			"Enabled": true
+		},
+		{
+			"Name": "MassCrowd",
+			"Enabled": true
+		},
+		{
+			"Name": "MassEntity",
+			"Enabled": true
+		},
+		{
+			"Name": "MassGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "AnimToTexture",
+			"Enabled": true
 		}
 	]
 }

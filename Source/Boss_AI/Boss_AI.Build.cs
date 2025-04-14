@@ -8,7 +8,20 @@ public class Boss_AI : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { 
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore", 
+			"MassCommon", 
+			"MassEntity",
+			"MassRepresentation",
+			"MassMovement",
+			"MassNavigation",
+			"MassCrowd",
+			"StructUtils",
+			
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
