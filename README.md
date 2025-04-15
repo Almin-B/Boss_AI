@@ -3,6 +3,21 @@
 In this Unreal Engine 5 project, I am diving deep into the world of AI programming for enemies. As I craft and fine-tune their behaviors, this project is to push the boundaries of my knowledge and skills in game development. 
 With each new enemy AI that I create and add to my collection, I am not only showcasing my expertise in AI programming but also expanding my capabilities in creating immersive and challenging gameplay experiences.
 
+# MassAI:
+A simple AI that follows the player and attacks him when it is in range to the player.
+
+  ### Follow Player 
+  A simple movement to the player with a smooting function.
+  ### Avoidance
+  Is integrated in the FollowPlayer where each entity pushes itself away if they get too close to each other. 
+  ### Jump/Attack 
+  When an entity is within jump range, it jumps towards the player and lands behind him.
+  ### Visualization
+  A custom processor that handles the visualization of the entities and the vertex animation.
+
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_01.gif" width="50%" height="50%"/>
+ <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_03.gif" width="50%" height="50%"/>
+
 # Attack Objects
 Attack Objects is a easy method for creating and executing attacks or actions.
 An object is created that exists in the background and contains information for the desired attack/action and is deleted after execution. This makes it easy to create attacks or actions which are then be executed by the enemy and each attack/action is separated from one another, making the addition of new attacks/actions more organized.
