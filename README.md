@@ -14,8 +14,12 @@ A simple AI that follows the player and attacks him when it is in range to the p
   When an entity is within jump range, it jumps towards the player and lands behind him.
   ### Visualization
   A custom processor that handles the visualization of the entities and the vertex animation.
+  <p align="center">
+   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_01.gif" width="50%" height="50%"/>
+   &nbsp; &nbsp;
+   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_03.gif" width="50%" height="50%"/>
+  </p>
 
- <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_01.gif" width="50%" height="50%"/> <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_03.gif" width="50%" height="50%"/>
 
 # Attack Objects
 Attack Objects is a easy method for creating and executing attacks or actions.
