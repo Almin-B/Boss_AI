@@ -15,9 +15,9 @@ A simple AI that follows the player and attacks him when it is in range to the p
   ### Visualization
   A custom processor that handles the visualization of the entities and the vertex animation.
   <p align="center">
-   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_01.gif" width="50%" height="50%"/>
+   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_01.gif" width="45%"/>
    &nbsp; &nbsp;
-   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_03.gif" width="50%" height="50%"/>
+   <img src="https://github.com/Almin-B/Boss_AI/blob/main/AI_Gifs/MassAI_03.gif" width="45%"/>
   </p>
 
 
