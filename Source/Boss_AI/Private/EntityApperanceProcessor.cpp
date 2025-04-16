@@ -84,6 +84,7 @@ void UEntityApperanceProcessor::Execute(FMassEntityManager& EntityManager, FMass
 							UMaterialInstanceDynamic* DynMaterial = UMaterialInstanceDynamic::Create(BaseMaterial, ApperanceActor);
 							StaticMeshComp->SetMaterial(0,DynMaterial);
 							ApperanceFragment.Material = DynMaterial;
+							ApperanceFragment.Material->SetScalarParameterValue(FName("SpeedVariation"), FMath::RandRange(-0.2f,0.2f));
 						}
 						
 						ApperanceFragment.VisualActor = ApperanceActor;
